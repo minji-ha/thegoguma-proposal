@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>시안 A · 더고구마</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;800&family=Nunito:wght@300;700;800;900&display=swap">
+<link rel="stylesheet" href="../assets/common.css">
+<style>
+/* 시안 A — 틸 그린 + 네이비. 전면 사진 히어로, 겹친 원형 비주얼, 분할 뉴스, 색면 띠. */
+:root{
+  --teal:#13a89e; --teal-d:#0e8a82; --teal-l:#e3f6f4; --navy:#243447; --navy-d:#1b2836;
+  --ink:#1f2933; --sub:#6b7480; --line:#e5e8ec; --gray:#f4f5f7;
+  --kr:"Noto Sans KR",system-ui,"Malgun Gothic",sans-serif; --en:"Nunito",var(--kr);
+}
+body{margin:0;font-family:var(--kr);color:var(--ink);background:#fff;word-break:keep-all;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.w{max-width:1100px;margin:0 auto;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+
+/* header */
+.hd{position:absolute;inset:0 0 auto;z-index:20;color:#fff}
+.hd .w{display:flex;align-items:center;height:86px;gap:24px}
+.logo{font-family:var(--en);font-weight:900;font-size:1.45rem;letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
+.logo i{width:10px;height:10px;border-radius:50%;background:#fff;display:inline-block;margin-top:-14px}
+.gnb{display:flex;gap:44px;margin:0 auto;font-size:.92rem;font-weight:500}
+.gnb a{opacity:.9;padding:8px 0;position:relative}
+.gnb a:hover{opacity:1}
+.gnb a:hover::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:#fff}
+.util{display:flex;align-items:center;gap:22px;font-size:.78rem;font-weight:500}
+.burger{width:22px;height:14px;position:relative}
+.burger::before,.burger::after,.burger span{content:"";position:absolute;left:0;right:0;height:2px;background:#fff}
+.burger::before{top:0}.burger span{top:6px}.burger::after{bottom:0}
+@media(max-width:900px){.gnb,.util .lang{display:none}.util{margin-left:auto}}
+
+/* hero */
+.hero{position:relative;height:min(100vh,760px);min-height:560px;overflow:hidden;color:#fff;display:grid;place-items:center;text-align:center}
+.hero .bg{position:absolute;inset:-4%;background:url(../assets/img/bg/lab.jpg) center/cover;animation:kb 22s ease-in-out infinite alternate}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,40,38,.45),rgba(14,40,38,.25) 40%,rgba(14,40,38,.55))}
+@keyframes kb{to{transform:scale(1.08) translate(-1%,1%)}}
+.hero .in{position:relative;z-index:2;padding:0 24px}
+.hero .en{font-family:var(--en);font-weight:300;font-size:clamp(.9rem,1.6vw,1.2rem);letter-spacing:.32em}
+.hero h1{font-size:clamp(2rem,5.4vw,3.6rem);font-weight:700;line-height:1.35;letter-spacing:-.04em;margin:18px 0 0;text-shadow:0 2px 24px rgba(0,0,0,.25)}
+.mouse{position:absolute;left:50%;bottom:38px;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;font-size:.66rem;letter-spacing:.1em;opacity:.85}
+.mouse span{width:22px;height:34px;border:1.5px solid #fff;border-radius:12px;position:relative}
+.mouse span::after{content:"";position:absolute;left:50%;top:7px;width:2px;height:7px;background:#fff;border-radius:2px;transform:translateX(-50%);animation:wheel 1.6s infinite}
+@keyframes wheel{to{opacity:0;transform:translate(-50%,9px)}}
+
+/* business */
+.biz{padding:110px 0 100px;text-align:center}
+.sec-t{font-family:var(--en);font-weight:800;font-size:clamp(2.2rem,5vw,3.2rem);color:var(--navy);letter-spacing:-.02em;margin:0}
+.more{display:inline-flex;align-items:center;gap:8px;font-size:.84rem;font-weight:500;margin-top:12px;color:var(--ink)}
+.more b{width:20px;height:20px;border-radius:50%;background:var(--navy);display:grid;place-items:center}
+.more b svg{width:10px;height:10px}
+.more.light{color:#fff}.more.light b{background:#fff}.more.light b svg path{stroke:var(--teal)}
+.visual{max-width:860px;margin:44px auto 0}
+.visual svg{width:100%;height:auto;display:block}
+.bcols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:860px;margin:36px auto 0}
+.bcols h3{font-size:1.25rem;font-weight:700;margin:0 0 10px}
+.bcols p{font-size:.86rem;color:var(--sub);line-height:1.75;margin:0}
+@media(max-width:700px){.bcols{grid-template-columns:1fr;gap:28px}}
+
+/* story band */
+.story{position:relative;min-height:400px;display:grid;place-items:center;text-align:center;color:#fff;overflow:hidden}
+.story .bg{position:absolute;inset:0;background:url(../assets/img/bg/field.jpg) center/cover;filter:saturate(.9)}
+.story::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(19,168,158,.55),rgba(36,52,71,.55))}
+.story .in{position:relative;z-index:2;padding:60px 24px}
+.story .sec-t{color:#fff}
+.story p{font-size:clamp(1rem,2vw,1.3rem);font-weight:500;line-height:1.7;margin:14px 0 0;text-shadow:0 1px 12px rgba(0,0,0,.2)}
+
+/* news split */
+.news{display:grid;grid-template-columns:42% 58%}
+.news>*{min-width:0}
+.news .l{background:var(--gray);padding:96px 0 96px max(24px,calc((100vw - 1100px)/2 + 24px))}
+.news .l .sec-t{text-align:left}
+.news .l h3{font-size:1.4rem;font-weight:700;line-height:1.55;margin:22px 0 40px;color:var(--ink)}
+.news .r{padding:72px max(24px,calc((100vw - 1100px)/2 + 24px)) 72px 64px;position:relative}
+.yr{font-family:var(--en);font-weight:800;font-size:1.25rem}
+.arw{position:absolute;right:max(24px,calc((100vw - 1100px)/2 + 24px));top:72px;display:flex;flex-direction:column;gap:6px;font-size:1rem;color:#b4bac2}
+.arw b{color:var(--ink)}
+.circle{width:min(260px,70%);aspect-ratio:1;border-radius:50%;background:#ebedf0;margin:30px auto 34px;display:grid;place-items:center;overflow:hidden}
+.circle img{width:72%;border-radius:10px;box-shadow:0 14px 30px rgba(0,0,0,.18)}
+.news h4{font-size:1.3rem;font-weight:700;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.news .d{font-size:.8rem;color:#9aa1a9;margin:8px 0 18px}
+.news .r p{font-size:.88rem;color:var(--sub);line-height:1.8;margin:0;max-width:52ch}
+@media(max-width:860px){.news{grid-template-columns:1fr}.news .l,.news .r{padding:64px 24px}.arw{right:24px;top:64px}}
+
+/* products band */
+.prod{background:linear-gradient(110deg,var(--teal) 0%,#1bb5aa 55%,#0f8f87 100%);color:#fff;overflow:hidden}
+.prod .w{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);align-items:end;gap:40px;min-height:420px}
+.prod .tx{padding:80px 0}
+.prod .sec-t{color:#fff;text-align:left}
+.prod h3{font-size:1.35rem;font-weight:700;line-height:1.55;margin:18px 0 36px}
+.frame{position:relative;align-self:stretch;display:flex;align-items:flex-end;justify-content:center;padding-top:60px}
+.frame::before{content:"";position:absolute;left:0;right:-30%;top:56px;bottom:0;border:28px solid rgba(255,255,255,.28);border-bottom:0}
+.trio{position:relative;display:flex;gap:16px;align-items:flex-end;z-index:2;padding-bottom:0}
+.trio figure{margin:0;text-align:center}
+.trio img{width:clamp(80px,15vw,180px);aspect-ratio:1;object-fit:cover;border-radius:14px 14px 0 0;box-shadow:0 -10px 30px rgba(0,0,0,.12)}
+.trio figure:nth-child(2) img{width:clamp(96px,18vw,210px)}
+.trio figcaption{background:var(--navy);font-size:.82rem;font-weight:700;padding:10px 0}
+@media(max-width:800px){.trio{gap:8px}.trio img,.trio .ph{width:26vw!important}.trio figure:nth-child(2) img{width:28vw!important}.prod .w{grid-template-columns:1fr}.prod .tx{padding:64px 0 10px}.frame::before{right:-24px}}
+
+/* footer */
+.ft{background:var(--navy);color:#c6ccd4}
+.sitemap{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;padding:56px 0 48px;font-size:.84rem}
+.sitemap b{display:block;color:#fff;font-weight:500;margin-bottom:14px;font-size:.9rem}
+.sitemap a{display:block;color:#8b96a3;line-height:2.1}
+.sitemap a:hover{color:#fff}
+.fb{border-top:1px solid rgba(255,255,255,.1);padding:30px 0 40px;font-size:.78rem;color:#7d8895;line-height:1.9}
+.fb .links{color:#fff;font-weight:500;display:flex;gap:18px;margin-bottom:12px}
+@media(max-width:800px){.sitemap{grid-template-columns:repeat(2,1fr)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+
+<header class="hd"><div class="w">
+  <a class="logo" href="#">더고구마<i></i></a>
+  <nav class="gnb"><a href="#">학교기업 소개</a><a href="#">고구마 이야기</a><a href="#">사업안내</a><a href="#">제품 소개</a><a href="#">공지사항</a></nav>
+  <div class="util"><span class="lang">KOR ▾</span><span class="burger"><span></span></span></div>
+</div></header>
+
+<section class="hero">
+  <div class="bg" role="img" aria-label="조직배양 중인 고구마 무병원주"></div>
+  <div class="in">
+    <div class="en">BEYOND THE SWEET POTATO</div>
+    <h1>고구마의 가능성을 배양해<br>더 건강한 내일을 만듭니다</h1>
+  </div>
+  <div class="mouse"><span></span>Scroll</div>
+</section>
+
+<section class="biz"><div class="w">
+  <h2 class="sec-t">Business</h2>
+  <a class="more" href="#">사업안내 자세히 보기 <b><svg viewBox="0 0 10 10" fill="none"><path d="M2 5h6M5.5 2.5L8 5 5.5 7.5" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/></svg></b></a>
+  <div class="visual">
+    <svg viewBox="0 0 900 330" role="img" aria-label="연구개발·고구마·교육 사진">
+      <defs>
+        <clipPath id="c1"><circle cx="175" cy="175" r="125"/></clipPath>
+        <clipPath id="c2"><circle cx="450" cy="150" r="125"/></clipPath>
+        <clipPath id="c3"><circle cx="725" cy="175" r="125"/></clipPath>
+        <linearGradient id="tg" x1="0" x2="1"><stop offset="0" stop-color="#13a89e"/><stop offset="1" stop-color="#1bc0b3"/></linearGradient>
+      </defs>
+      <path d="M90 250 L230 115 L330 230 L450 95 L570 230 L670 115 L810 250" fill="none" stroke="url(#tg)" stroke-width="96" stroke-linecap="round" stroke-linejoin="round" opacity=".92"/>
+      <circle cx="175" cy="175" r="150" fill="none" stroke="#c9ece8" stroke-width="1" stroke-dasharray="3 6"/>
+      <image href="../assets/img/culture/05.jpg" x="40" y="45" width="270" height="270" preserveAspectRatio="xMidYMid slice" clip-path="url(#c1)"/>
+      <image href="../assets/img/hero/01.jpg" x="315" y="20" width="270" height="270" preserveAspectRatio="xMidYMid slice" clip-path="url(#c2)"/>
+      <circle cx="450" cy="150" r="125" fill="none" stroke="#fff" stroke-width="6"/>
+      <image href="../assets/img/culture/06.jpg" x="590" y="45" width="270" height="270" preserveAspectRatio="xMidYMid slice" clip-path="url(#c3)"/>
+      <circle cx="725" cy="175" r="152" fill="none" stroke="#13a89e" stroke-width="3"/>
+    </svg>
+  </div>
+  <div class="bcols">
+    <div><h3>연구개발</h3><p>생장점 배양과 바이러스 진단 기술로<br>깨끗한 무병주를 생산합니다.</p></div>
+    <div><h3>수익사업</h3><p>조직배양묘, 고구마 생과, 기념주를<br>개발하고 판매합니다.</p></div>
+    <div><h3>교육사업</h3><p>조직배양 실습과 창업교육,<br>지역연계 프로그램을 운영합니다.</p></div>
+  </div>
+</div></section>
+
+<section class="story">
+  <div class="bg" role="img" aria-label="수확한 고구마"></div>
+  <div class="in">
+    <h2 class="sec-t">Story</h2>
+    <p>세계 7대 식용작물, 고구마의 가치를<br>서울시립대학교 연구실에서 다시 씁니다</p>
+    <a class="more light" href="#" style="margin-top:22px">고구마 이야기 <b><svg viewBox="0 0 10 10" fill="none"><path d="M2 5h6M5.5 2.5L8 5 5.5 7.5" stroke-width="1.4" stroke-linecap="round"/></svg></b></a>
+  </div>
+</section>
+
+<section class="news">
+  <div class="l">
+    <h2 class="sec-t">Notice</h2>
+    <h3>더고구마의<br>새로운 소식</h3>
+    <a class="more" href="#">자세히 보기 <b><svg viewBox="0 0 10 10" fill="none"><path d="M2 5h6M5.5 2.5L8 5 5.5 7.5" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/></svg></b></a>
+  </div>
+  <div class="r">
+    <div class="yr">2026</div>
+    <div class="arw"><span>↑</span><b>↓</b></div>
+    <div class="circle"><img src="../assets/img/culture/03.jpg" alt=""></div>
+    <h4>2026 식물과 함께하는 라이프 스타일 시리즈 안내</h4>
+    <div class="d">11.02 · 지역연계 프로그램</div>
+    <p>지역연계 프로그램 「식물과 함께하는 라이프 스타일 시리즈」를 안내드립니다. 자세한 일정과 참여 방법은 공지사항에서 확인하실 수 있습니다.</p>
+  </div>
+</section>
+
+<section class="prod"><div class="w">
+  <div class="tx">
+    <h2 class="sec-t">Products</h2>
+    <h3>연구실에서 시작된<br>더고구마의 제품</h3>
+    <a class="more light" href="#">제품 소개 <b><svg viewBox="0 0 10 10" fill="none"><path d="M2 5h6M5.5 2.5L8 5 5.5 7.5" stroke-width="1.4" stroke-linecap="round"/></svg></b></a>
+  </div>
+  <div class="frame">
+    <div class="trio">
+      <figure><img src="../assets/img/culture/04.jpg" alt=""><figcaption>조직배양묘</figcaption></figure>
+      <figure><img src="../assets/img/variety/purple/02.jpg" alt=""><figcaption>고구마 생과</figcaption></figure>
+      <figure><div class="ph sq-ph" style="width:clamp(80px,15vw,180px)">기념주<br>사진</div><figcaption>기념주</figcaption></figure>
+    </div>
+  </div>
+</div></section>
+
+<footer class="ft"><div class="w">
+  <div class="sitemap">
+    <div><b>학교기업 소개</b><a href="#">설립 목적</a><a href="#">오시는 길</a></div>
+    <div><b>고구마 이야기</b><a href="#">고구마 이야기</a><a href="#">조직배양기술 이야기</a></div>
+    <div><b>사업안내</b><a href="#">교육사업</a><a href="#">수익사업</a></div>
+    <div><b>제품 소개</b><a href="#">조직배양묘</a><a href="#">고구마 생과</a><a href="#">기념주</a></div>
+    <div><b>공지사항</b><a href="#">공지사항</a></div>
+  </div>
+  <div class="fb">
+    <div class="links"><a href="#">개인정보처리방침</a><a href="#">이용약관</a></div>
+    서울특별시 동대문구 서울시립대로 163 서울시립대학교 자연과학대학 환경원예학과<br>
+    Copyright © 서울시립대학교 학교기업 더고구마. All Rights Reserved.
+  </div>
+</div></footer>
+
+<a class="back" href="../">← 시안 목록</a>
+</body>
+</html>
