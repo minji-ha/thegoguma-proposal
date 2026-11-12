@@ -1,10 +1,13 @@
-/* 세 시안 공통: 시안 목록으로 돌아가는 버튼, 사진 준비 중 자리 */
+/* 세 시안 공통: 와이드 여백, 시안 목록 버튼, 사진 준비 중 자리 */
+:root{--gut:clamp(20px,7.8vw,200px)}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+.w{padding-left:max(var(--gut),env(safe-area-inset-left,0px));padding-right:max(var(--gut),env(safe-area-inset-right,0px))}
 .back{position:fixed;left:max(16px,env(safe-area-inset-left,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));z-index:999;background:rgba(20,20,24,.82);color:#fff!important;
-  font:600 13px/1 "Noto Sans KR",system-ui,sans-serif;padding:11px 16px;border-radius:99px;text-decoration:none;backdrop-filter:blur(6px)}
+  font:600 13px/1 Pretendard,"Pretendard Variable","Noto Sans KR",system-ui,sans-serif;padding:11px 16px;border-radius:99px;text-decoration:none;backdrop-filter:blur(6px)}
 .back:hover{background:#000}
 .ph{display:grid;place-items:center;text-align:center;background:repeating-linear-gradient(135deg,#eef0f3 0 10px,#e6e9ed 10px 20px);
   color:#8a929c;font-size:.8rem;font-weight:700;line-height:1.5}
-.sq-ph{aspect-ratio:1;border-radius:14px 14px 0 0}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}

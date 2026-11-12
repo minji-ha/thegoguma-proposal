@@ -6,12 +6,13 @@
 <meta name="robots" content="noindex, nofollow">
 <title>더고구마 홈페이지 리뉴얼 시안</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&family=Nunito:wght@800&family=Nanum+Brush+Script&family=Ubuntu:wght@400&display=swap">
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:"Noto Sans KR",system-ui,"Malgun Gothic",sans-serif;background:#f4f4f2;color:#1d1f22;word-break:keep-all;-webkit-font-smoothing:antialiased}
+body{margin:0;font-family:"Pretendard Variable",Pretendard,"Noto Sans KR",system-ui,"Malgun Gothic",sans-serif;background:#f4f4f2;color:#1d1f22;word-break:keep-all;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
-.w{max-width:1120px;margin:0 auto;padding:72px max(24px,env(safe-area-inset-left,0px)) 90px}
+.w{padding:80px clamp(20px,7.8vw,200px) 100px}
 .k{font-size:.78rem;font-weight:700;color:#7b6f86;letter-spacing:.06em}
 h1{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:800;letter-spacing:-.04em;margin:10px 0 12px}
 .lead{color:#5f636b;max-width:60ch;line-height:1.8;margin:0}
@@ -19,13 +20,13 @@ h1{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:800;letter-spacing:-.04em;marg
 @media(max-width:900px){.grid{grid-template-columns:1fr}}
 .card{background:#fff;border-radius:18px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s}
 .card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.08)}
-.pv{height:220px;position:relative;display:grid;place-items:center;color:#fff;text-align:center;overflow:hidden}
+.pv{height:clamp(220px,18vw,320px);position:relative;display:grid;place-items:center;color:#fff;text-align:center;overflow:hidden}
 .pv::before{content:"";position:absolute;inset:0;background-size:cover;background-position:center}
 .pv>*{position:relative}
-.a .pv::before{background-image:linear-gradient(rgba(14,40,38,.45),rgba(14,40,38,.45)),url(assets/img/bg/lab.jpg)}
+.a .pv::before{background-image:linear-gradient(rgba(14,40,38,.45),rgba(14,40,38,.45)),url(assets/img/photo/field.jpg)}
 .b .pv{border-bottom-right-radius:70px}
-.b .pv::before{background-image:linear-gradient(rgba(28,18,30,.5),rgba(28,18,30,.5)),url(assets/img/bg/field.jpg)}
-.c .pv::before{background-image:radial-gradient(ellipse at 50% 45%,rgba(30,110,140,.2),rgba(8,28,48,.9) 72%),url(assets/img/bg/lab.jpg);filter:hue-rotate(28deg)}
+.b .pv::before{background-image:linear-gradient(rgba(20,40,30,.4),rgba(20,40,30,.4)),url(assets/img/photo/field.jpg)}
+.c .pv::before{background-image:linear-gradient(90deg,rgba(7,28,43,.85),rgba(7,28,43,.35)),url(assets/img/photo/dark-orange.jpg)}
 .pv .s1{font-size:1.15rem;font-weight:700;line-height:1.5}
 .pv .s2{font-family:"Nanum Brush Script",cursive;font-size:4.2rem;line-height:1}
 .pv .s3{font-family:Ubuntu,sans-serif;font-size:1.9rem}
@@ -51,30 +52,30 @@ h1{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:800;letter-spacing:-.04em;marg
   <div class="grid">
     <a class="card a" href="a/">
       <div class="pv"><div class="s1">고구마의 가능성을 배양해<br>더 건강한 내일을 만듭니다</div>
-        <div class="chips"><i style="background:#13a89e"></i><i style="background:#243447"></i><i style="background:#f4f5f7"></i></div></div>
-      <div class="bd"><div class="t"><b>시안 A</b><span>틸 그린 · 기업형</span></div>
+        <div class="chips"><i style="background:#14b8a6"></i><i style="background:#1e293b"></i><i style="background:#a3e635"></i></div></div>
+      <div class="bd"><div class="t"><b>시안 A</b><span>민트 틸 · 기업형</span></div>
         <p>전면 사진 히어로에 사업 분야를 겹친 원형 비주얼로 보여주는 안정적인 기업형 구성입니다.</p>
         <ul><li>전면 사진(영상) 히어로 + 스크롤 안내</li><li>사업 분야 원형 비주얼 3종</li><li>좌우 분할 공지사항, 제품 색면 띠</li><li>하단 사이트맵형 푸터</li></ul>
         <span class="go">시안 A 보기 →</span></div></a>
 
     <a class="card b" href="b/">
       <div class="pv"><div><div style="font-size:.8rem;opacity:.85">서울시립대</div><div class="s2">고구마</div></div>
-        <div class="chips"><i style="background:#7b2f57"></i><i style="background:#d8763a"></i><i style="background:#46454f"></i></div></div>
-      <div class="bd"><div class="t"><b>시안 B</b><span>자주 · 감성형</span></div>
+        <div class="chips"><i style="background:#c0396b"></i><i style="background:#f39a3d"></i><i style="background:#1f4636"></i></div></div>
+      <div class="bd"><div class="t"><b>시안 B</b><span>베리 · 감성형</span></div>
         <p>붓글씨 타이틀과 곡선으로 잘린 히어로, 둥근 카드로 학교기업다운 친근함을 살린 구성입니다.</p>
         <ul><li>곡선 히어로 + 붓글씨 타이틀</li><li>제품 구매 안내 원형 버튼</li><li>공지·이야기 카드 슬라이더</li><li>자체 육성 품종 타이핑 연출</li></ul>
         <span class="go">시안 B 보기 →</span></div></a>
 
     <a class="card c" href="c/">
       <div class="pv"><div><div style="font-family:Ubuntu,sans-serif;font-size:.9rem;opacity:.75">Our Technology</div><div class="s3">Virus-free Sweet Potato</div></div>
-        <div class="chips"><i style="background:#0e2a44"></i><i style="background:#17a673"></i><i style="background:#f0883a"></i></div></div>
-      <div class="bd"><div class="t"><b>시안 C</b><span>남색 · 연구소형</span></div>
+        <div class="chips"><i style="background:#0b2a3f"></i><i style="background:#10b981"></i><i style="background:#f97316"></i></div></div>
+      <div class="bd"><div class="t"><b>시안 C</b><span>청록 · 연구소형</span></div>
         <p>바이오 연구소 분위기의 남색 히어로와 큰 수치, 기술 탭으로 '연구하는 학교기업'을 강조한 구성입니다.</p>
         <ul><li>세포·기포 연출 히어로</li><li>설립·품종 수치 타일</li><li>R&amp;D 기술 탭 전환</li><li>오른쪽 섹션 내비게이션</li></ul>
         <span class="go">시안 C 보기 →</span></div></a>
   </div>
 
-  <div class="note"><b>사진 안내</b> · 현재 시안의 사진은 기존 홈페이지 자료를 임시로 사용했습니다. 원본 해상도가 낮아 배경 사진은 흐림 처리했으며, 시안 확정 후 고해상도 이미지로 교체합니다.</div>
+  <div class="note"><b>사진 안내</b> · 고구마 밭·고구마 사진은 시안용으로 준비한 이미지이며, 조직배양 과정과 진단 키트 사진은 기존 홈페이지 자료입니다. 시안 확정 후 최종 이미지로 정리합니다.</div>
 </div>
 </body>
 </html>

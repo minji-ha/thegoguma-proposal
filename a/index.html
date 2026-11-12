@@ -5,201 +5,220 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <title>시안 A · 더고구마</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;800&family=Nunito:wght@300;700;800;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;800&display=swap">
 <link rel="stylesheet" href="../assets/common.css">
 <style>
-/* 시안 A — 틸 그린 + 네이비. 전면 사진 히어로, 겹친 원형 비주얼, 분할 뉴스, 색면 띠. */
+/* 시안 A — 민트 틸 + 네이비, 고구마 밭 전면 히어로. 와이드 여백(--gut)으로 화면을 넓게 쓴다. */
 :root{
-  --teal:#13a89e; --teal-d:#0e8a82; --teal-l:#e3f6f4; --navy:#243447; --navy-d:#1b2836;
-  --ink:#1f2933; --sub:#6b7480; --line:#e5e8ec; --gray:#f4f5f7;
-  --kr:"Noto Sans KR",system-ui,"Malgun Gothic",sans-serif; --en:"Nunito",var(--kr);
+  --teal:#14b8a6; --teal-d:#0f9488; --deep:#0f766e; --mint:#ecfdf8; --mint-2:#d5f7ef; --lime:#a3e635;
+  --navy:#1e293b; --ink:#0f172a; --sub:#64748b; --line:#e2e8f0;
+  --kr:"Pretendard Variable",Pretendard,"Noto Sans KR",system-ui,sans-serif; --en:"Outfit",var(--kr);
 }
-body{margin:0;font-family:var(--kr);color:var(--ink);background:#fff;word-break:keep-all;-webkit-font-smoothing:antialiased}
+body{margin:0;font-family:var(--kr);color:var(--ink);background:#fff;word-break:keep-all;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
-.w{max-width:1100px;margin:0 auto;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
 
 /* header */
-.hd{position:absolute;inset:0 0 auto;z-index:20;color:#fff}
-.hd .w{display:flex;align-items:center;height:86px;gap:24px}
-.logo{font-family:var(--en);font-weight:900;font-size:1.45rem;letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
-.logo i{width:10px;height:10px;border-radius:50%;background:#fff;display:inline-block;margin-top:-14px}
-.gnb{display:flex;gap:44px;margin:0 auto;font-size:.92rem;font-weight:500}
-.gnb a{opacity:.9;padding:8px 0;position:relative}
-.gnb a:hover{opacity:1}
-.gnb a:hover::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:#fff}
-.util{display:flex;align-items:center;gap:22px;font-size:.78rem;font-weight:500}
-.burger{width:22px;height:14px;position:relative}
-.burger::before,.burger::after,.burger span{content:"";position:absolute;left:0;right:0;height:2px;background:#fff}
+.hd{position:fixed;inset:0 0 auto;z-index:50;color:#fff;transition:background .3s,color .3s,box-shadow .3s}
+.hd .w{display:flex;align-items:center;height:88px;gap:24px}
+.hd.scrolled{background:rgba(255,255,255,.94);color:var(--ink);box-shadow:0 1px 0 var(--line);backdrop-filter:blur(10px)}
+.logo{font-family:var(--en);font-weight:800;font-size:1.55rem;letter-spacing:-.03em;display:flex;align-items:center;gap:7px}
+.logo i{width:9px;height:9px;border-radius:50%;background:var(--lime);display:inline-block;margin-top:-16px}
+.gnb{display:flex;gap:clamp(28px,3.4vw,64px);margin:0 auto;font-size:1rem;font-weight:600}
+.gnb a{opacity:.92;padding:8px 0;position:relative}
+.gnb a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:currentColor;transform:scaleX(0);transition:transform .25s}
+.gnb a:hover::after{transform:none}
+.util{display:flex;align-items:center;gap:22px;font-size:.82rem;font-weight:600}
+.burger{width:24px;height:14px;position:relative;display:block}
+.burger::before,.burger::after,.burger span{content:"";position:absolute;left:0;right:0;height:2px;background:currentColor;border-radius:2px}
 .burger::before{top:0}.burger span{top:6px}.burger::after{bottom:0}
-@media(max-width:900px){.gnb,.util .lang{display:none}.util{margin-left:auto}}
+@media(max-width:960px){.gnb,.util .lang{display:none}.util{margin-left:auto}.hd .w{height:70px}}
 
 /* hero */
-.hero{position:relative;height:min(100vh,760px);min-height:560px;overflow:hidden;color:#fff;display:grid;place-items:center;text-align:center}
-.hero .bg{position:absolute;inset:-4%;background:url(../assets/img/bg/lab.jpg) center/cover;animation:kb 22s ease-in-out infinite alternate}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,40,38,.45),rgba(14,40,38,.25) 40%,rgba(14,40,38,.55))}
-@keyframes kb{to{transform:scale(1.08) translate(-1%,1%)}}
-.hero .in{position:relative;z-index:2;padding:0 24px}
-.hero .en{font-family:var(--en);font-weight:300;font-size:clamp(.9rem,1.6vw,1.2rem);letter-spacing:.32em}
-.hero h1{font-size:clamp(2rem,5.4vw,3.6rem);font-weight:700;line-height:1.35;letter-spacing:-.04em;margin:18px 0 0;text-shadow:0 2px 24px rgba(0,0,0,.25)}
-.mouse{position:absolute;left:50%;bottom:38px;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;font-size:.66rem;letter-spacing:.1em;opacity:.85}
-.mouse span{width:22px;height:34px;border:1.5px solid #fff;border-radius:12px;position:relative}
-.mouse span::after{content:"";position:absolute;left:50%;top:7px;width:2px;height:7px;background:#fff;border-radius:2px;transform:translateX(-50%);animation:wheel 1.6s infinite}
-@keyframes wheel{to{opacity:0;transform:translate(-50%,9px)}}
+.hero{position:relative;height:100vh;min-height:620px;max-height:1080px;overflow:hidden;color:#fff;display:grid;place-items:center;text-align:center}
+.hero .bg{position:absolute;inset:0;background:url(../assets/img/photo/field.jpg) center 62%/cover;animation:kb 24s ease-in-out infinite alternate;transform-origin:50% 70%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,58,52,.42) 0%,rgba(6,58,52,.18) 45%,rgba(6,58,52,.5) 100%)}
+@keyframes kb{to{transform:scale(1.08)}}
+.hero .in{position:relative;z-index:2;padding:0 24px;margin-top:-4vh}
+.hero .en{font-family:var(--en);font-weight:300;font-size:clamp(.9rem,1.4vw,1.25rem);letter-spacing:.34em}
+.hero h1{font-size:clamp(2.2rem,5.2vw,4.6rem);font-weight:800;line-height:1.28;letter-spacing:-.045em;margin:20px 0 0;text-shadow:0 2px 30px rgba(0,40,30,.3)}
+.hero h1 em{font-style:normal;color:#d9f99d}
+.mouse{position:absolute;left:50%;bottom:40px;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;font-family:var(--en);font-size:.7rem;letter-spacing:.12em}
+.mouse span{width:24px;height:38px;border:2px solid #fff;border-radius:14px;position:relative}
+.mouse span::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:8px;background:#fff;border-radius:2px;transform:translateX(-50%);animation:wheel 1.6s infinite}
+@keyframes wheel{to{opacity:0;transform:translate(-50%,10px)}}
+
+/* common */
+.sec-t{font-family:var(--en);font-weight:800;font-size:clamp(2.6rem,5.4vw,4.4rem);color:var(--navy);letter-spacing:-.03em;margin:0;line-height:1}
+.more{display:inline-flex;align-items:center;gap:10px;font-size:.95rem;font-weight:600;margin-top:18px}
+.more b{width:26px;height:26px;border-radius:50%;background:var(--teal);display:grid;place-items:center;transition:transform .25s}
+.more:hover b{transform:translateX(4px)}
+.more b svg{width:12px;height:12px}
+.more.light b{background:#fff}.more.light b svg path{stroke:var(--deep)}
 
 /* business */
-.biz{padding:110px 0 100px;text-align:center}
-.sec-t{font-family:var(--en);font-weight:800;font-size:clamp(2.2rem,5vw,3.2rem);color:var(--navy);letter-spacing:-.02em;margin:0}
-.more{display:inline-flex;align-items:center;gap:8px;font-size:.84rem;font-weight:500;margin-top:12px;color:var(--ink)}
-.more b{width:20px;height:20px;border-radius:50%;background:var(--navy);display:grid;place-items:center}
-.more b svg{width:10px;height:10px}
-.more.light{color:#fff}.more.light b{background:#fff}.more.light b svg path{stroke:var(--teal)}
-.visual{max-width:860px;margin:44px auto 0}
-.visual svg{width:100%;height:auto;display:block}
-.bcols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:860px;margin:36px auto 0}
-.bcols h3{font-size:1.25rem;font-weight:700;margin:0 0 10px}
-.bcols p{font-size:.86rem;color:var(--sub);line-height:1.75;margin:0}
-@media(max-width:700px){.bcols{grid-template-columns:1fr;gap:28px}}
+.biz{padding:140px 0 130px;text-align:center}
+.visual{margin:56px auto 0;max-width:1500px}
+.visual svg{width:100%;height:auto;display:block;overflow:visible}
+.bcols{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:1500px;margin:44px auto 0}
+.bcols h3{font-size:1.5rem;font-weight:800;margin:0 0 12px;letter-spacing:-.03em}
+.bcols p{font-size:1rem;color:var(--sub);line-height:1.75;margin:0}
+@media(max-width:760px){.bcols{grid-template-columns:1fr;gap:30px}}
 
-/* story band */
-.story{position:relative;min-height:400px;display:grid;place-items:center;text-align:center;color:#fff;overflow:hidden}
-.story .bg{position:absolute;inset:0;background:url(../assets/img/bg/field.jpg) center/cover;filter:saturate(.9)}
-.story::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(19,168,158,.55),rgba(36,52,71,.55))}
-.story .in{position:relative;z-index:2;padding:60px 24px}
+/* story */
+.story{position:relative;min-height:560px;display:grid;place-items:center;text-align:center;color:#fff;overflow:hidden}
+.story .bg{position:absolute;inset:0;background:url(../assets/img/photo/board-red.jpg) center/cover;background-attachment:fixed}
+.story::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(15,118,110,.82),rgba(20,184,166,.45) 60%,rgba(15,118,110,.25))}
+.story .in{position:relative;z-index:2;padding:80px 24px}
 .story .sec-t{color:#fff}
-.story p{font-size:clamp(1rem,2vw,1.3rem);font-weight:500;line-height:1.7;margin:14px 0 0;text-shadow:0 1px 12px rgba(0,0,0,.2)}
+.story p{font-size:clamp(1.15rem,2vw,1.6rem);font-weight:600;line-height:1.65;margin:22px 0 0}
+@media(hover:none){.story .bg{background-attachment:scroll}}
 
 /* news split */
-.news{display:grid;grid-template-columns:42% 58%}
+.news{display:grid;grid-template-columns:40% 60%}
 .news>*{min-width:0}
-.news .l{background:var(--gray);padding:96px 0 96px max(24px,calc((100vw - 1100px)/2 + 24px))}
-.news .l .sec-t{text-align:left}
-.news .l h3{font-size:1.4rem;font-weight:700;line-height:1.55;margin:22px 0 40px;color:var(--ink)}
-.news .r{padding:72px max(24px,calc((100vw - 1100px)/2 + 24px)) 72px 64px;position:relative}
-.yr{font-family:var(--en);font-weight:800;font-size:1.25rem}
-.arw{position:absolute;right:max(24px,calc((100vw - 1100px)/2 + 24px));top:72px;display:flex;flex-direction:column;gap:6px;font-size:1rem;color:#b4bac2}
+.news .l{background:var(--mint);padding:130px var(--gut);padding-right:56px;position:relative;overflow:hidden}
+.news .l::after{content:"";position:absolute;right:-120px;bottom:-120px;width:340px;height:340px;border-radius:50%;background:var(--mint-2)}
+.news .l>*{position:relative;z-index:1}
+.news .l h3{font-size:clamp(1.5rem,2.2vw,2rem);font-weight:800;line-height:1.45;margin:28px 0 44px;letter-spacing:-.04em}
+.news .r{padding:100px var(--gut) 110px clamp(40px,6vw,120px);position:relative}
+.yr{font-family:var(--en);font-weight:800;font-size:1.5rem;color:var(--teal-d)}
+.arw{position:absolute;right:var(--gut);top:100px;display:flex;flex-direction:column;gap:4px;font-size:1.2rem;color:#cbd5e1}
 .arw b{color:var(--ink)}
-.circle{width:min(260px,70%);aspect-ratio:1;border-radius:50%;background:#ebedf0;margin:30px auto 34px;display:grid;place-items:center;overflow:hidden}
-.circle img{width:72%;border-radius:10px;box-shadow:0 14px 30px rgba(0,0,0,.18)}
-.news h4{font-size:1.3rem;font-weight:700;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.news .d{font-size:.8rem;color:#9aa1a9;margin:8px 0 18px}
-.news .r p{font-size:.88rem;color:var(--sub);line-height:1.8;margin:0;max-width:52ch}
-@media(max-width:860px){.news{grid-template-columns:1fr}.news .l,.news .r{padding:64px 24px}.arw{right:24px;top:64px}}
+.nwrap{display:grid;grid-template-columns:clamp(200px,19vw,340px) minmax(0,1fr);gap:clamp(30px,4vw,64px);align-items:center;margin-top:34px}
+.circle{aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 60%,#fff3d6,#ffe7b0 60%,#fde68a);display:grid;place-items:center;position:relative}
+.circle img{width:118%;max-width:none;filter:drop-shadow(0 18px 18px rgba(120,60,20,.22));transform:rotate(-8deg)}
+.tag{display:inline-block;background:var(--mint);color:var(--deep);font-size:.8rem;font-weight:700;padding:6px 12px;border-radius:99px}
+.news h4{font-size:clamp(1.3rem,1.9vw,1.7rem);font-weight:800;margin:14px 0 0;line-height:1.45;letter-spacing:-.035em}
+.news .d{font-size:.9rem;color:#94a3b8;margin:10px 0 20px;font-family:var(--en)}
+.news .r p{font-size:1rem;color:var(--sub);line-height:1.8;margin:0;max-width:52ch}
+@media(max-width:1320px){.nwrap{grid-template-columns:1fr}.circle{max-width:260px}}
+@media(max-width:1000px){.news{grid-template-columns:1fr}.news .l{padding:80px var(--gut)}.news .r{padding:80px var(--gut)}.arw{top:80px}.nwrap{grid-template-columns:1fr}.circle{max-width:300px}}
 
-/* products band */
-.prod{background:linear-gradient(110deg,var(--teal) 0%,#1bb5aa 55%,#0f8f87 100%);color:#fff;overflow:hidden}
-.prod .w{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);align-items:end;gap:40px;min-height:420px}
-.prod .tx{padding:80px 0}
-.prod .sec-t{color:#fff;text-align:left}
-.prod h3{font-size:1.35rem;font-weight:700;line-height:1.55;margin:18px 0 36px}
-.frame{position:relative;align-self:stretch;display:flex;align-items:flex-end;justify-content:center;padding-top:60px}
-.frame::before{content:"";position:absolute;left:0;right:-30%;top:56px;bottom:0;border:28px solid rgba(255,255,255,.28);border-bottom:0}
-.trio{position:relative;display:flex;gap:16px;align-items:flex-end;z-index:2;padding-bottom:0}
-.trio figure{margin:0;text-align:center}
-.trio img{width:clamp(80px,15vw,180px);aspect-ratio:1;object-fit:cover;border-radius:14px 14px 0 0;box-shadow:0 -10px 30px rgba(0,0,0,.12)}
-.trio figure:nth-child(2) img{width:clamp(96px,18vw,210px)}
-.trio figcaption{background:var(--navy);font-size:.82rem;font-weight:700;padding:10px 0}
-@media(max-width:800px){.trio{gap:8px}.trio img,.trio .ph{width:26vw!important}.trio figure:nth-child(2) img{width:28vw!important}.prod .w{grid-template-columns:1fr}.prod .tx{padding:64px 0 10px}.frame::before{right:-24px}}
+/* products */
+.prod{background:linear-gradient(115deg,#0f9488 0%,#14b8a6 48%,#5eead4 100%);color:#fff;overflow:hidden;position:relative}
+.prod .w{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);align-items:center;gap:40px;min-height:620px}
+.prod .tx{padding:110px 0}
+.prod .sec-t{color:#fff}
+.prod h3{font-size:clamp(1.4rem,2.2vw,2rem);font-weight:800;line-height:1.5;margin:26px 0 30px;letter-spacing:-.04em}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px}
+.chips a{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);padding:10px 18px;border-radius:99px;font-weight:600;font-size:.95rem;backdrop-filter:blur(4px);transition:background .2s}
+.chips a:hover{background:#fff;color:var(--deep)}
+.stage{position:relative;align-self:stretch;min-height:480px}
+.stage::before{content:"";position:absolute;left:4%;right:calc(-1 * var(--gut));top:70px;bottom:-1px;border:clamp(18px,2.4vw,34px) solid rgba(255,255,255,.3);border-right:0;border-bottom:0;border-radius:30px 0 0 0}
+.stage img{position:absolute;filter:drop-shadow(0 24px 30px rgba(6,60,55,.35))}
+.stage .p1{width:min(78%,760px);right:2%;bottom:60px;animation:bob 6s ease-in-out infinite}
+.stage .p2{width:min(46%,430px);left:6%;bottom:20px;transform:rotate(-10deg);animation:bob 7s ease-in-out infinite reverse}
+@keyframes bob{50%{translate:0 -12px}}
+@media(max-width:900px){.prod .w{grid-template-columns:1fr}.prod .tx{padding:80px 0 0}.stage{min-height:300px}.stage::before{top:30px}}
 
 /* footer */
-.ft{background:var(--navy);color:#c6ccd4}
-.sitemap{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;padding:56px 0 48px;font-size:.84rem}
-.sitemap b{display:block;color:#fff;font-weight:500;margin-bottom:14px;font-size:.9rem}
-.sitemap a{display:block;color:#8b96a3;line-height:2.1}
-.sitemap a:hover{color:#fff}
-.fb{border-top:1px solid rgba(255,255,255,.1);padding:30px 0 40px;font-size:.78rem;color:#7d8895;line-height:1.9}
-.fb .links{color:#fff;font-weight:500;display:flex;gap:18px;margin-bottom:12px}
-@media(max-width:800px){.sitemap{grid-template-columns:repeat(2,1fr)}}
+.ft{background:var(--navy);color:#cbd5e1}
+.sitemap{display:grid;grid-template-columns:1.4fr repeat(5,1fr);gap:24px;padding:72px 0 56px;font-size:.92rem}
+.sitemap .brand{font-family:var(--en);font-weight:800;font-size:1.6rem;color:#fff}
+.sitemap .brand small{display:block;font-family:var(--kr);font-weight:400;font-size:.85rem;color:#94a3b8;margin-top:10px;line-height:1.7}
+.sitemap b{display:block;color:#fff;font-weight:700;margin-bottom:16px}
+.sitemap a{display:block;color:#94a3b8;line-height:2.2}
+.sitemap a:hover{color:var(--teal)}
+.fb{border-top:1px solid rgba(255,255,255,.08);padding:28px 0 36px;font-size:.84rem;color:#94a3b8;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.fb .links{color:#fff;font-weight:600;display:flex;gap:20px}
+@media(max-width:1000px){.sitemap{grid-template-columns:repeat(3,1fr)}.sitemap .brand{grid-column:1/-1}}
+@media(max-width:560px){.sitemap{grid-template-columns:repeat(2,1fr)}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}
 </style>
 </head>
 <body>
 
-<header class="hd"><div class="w">
+<header class="hd" data-hd><div class="w">
   <a class="logo" href="#">더고구마<i></i></a>
   <nav class="gnb"><a href="#">학교기업 소개</a><a href="#">고구마 이야기</a><a href="#">사업안내</a><a href="#">제품 소개</a><a href="#">공지사항</a></nav>
   <div class="util"><span class="lang">KOR ▾</span><span class="burger"><span></span></span></div>
 </div></header>
 
 <section class="hero">
-  <div class="bg" role="img" aria-label="조직배양 중인 고구마 무병원주"></div>
+  <div class="bg" role="img" aria-label="고구마 밭"></div>
   <div class="in">
     <div class="en">BEYOND THE SWEET POTATO</div>
-    <h1>고구마의 가능성을 배양해<br>더 건강한 내일을 만듭니다</h1>
+    <h1>고구마의 가능성을 <em>배양</em>해<br>더 건강한 내일을 만듭니다</h1>
   </div>
-  <div class="mouse"><span></span>Scroll</div>
+  <div class="mouse"><span></span>SCROLL</div>
 </section>
 
 <section class="biz"><div class="w">
-  <h2 class="sec-t">Business</h2>
-  <a class="more" href="#">사업안내 자세히 보기 <b><svg viewBox="0 0 10 10" fill="none"><path d="M2 5h6M5.5 2.5L8 5 5.5 7.5" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/></svg></b></a>
-  <div class="visual">
-    <svg viewBox="0 0 900 330" role="img" aria-label="연구개발·고구마·교육 사진">
+  <h2 class="sec-t reveal">Business</h2>
+  <a class="more reveal" href="#">사업안내 자세히 보기 <b><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></b></a>
+  <div class="visual reveal">
+    <svg viewBox="0 0 1500 440" role="img" aria-label="연구개발·수익사업·교육사업 사진">
       <defs>
-        <clipPath id="c1"><circle cx="175" cy="175" r="125"/></clipPath>
-        <clipPath id="c2"><circle cx="450" cy="150" r="125"/></clipPath>
-        <clipPath id="c3"><circle cx="725" cy="175" r="125"/></clipPath>
-        <linearGradient id="tg" x1="0" x2="1"><stop offset="0" stop-color="#13a89e"/><stop offset="1" stop-color="#1bc0b3"/></linearGradient>
+        <clipPath id="c1"><circle cx="270" cy="240" r="190"/></clipPath>
+        <clipPath id="c2"><circle cx="750" cy="200" r="190"/></clipPath>
+        <clipPath id="c3"><circle cx="1230" cy="240" r="190"/></clipPath>
+        <linearGradient id="tg" x1="0" x2="1"><stop offset="0" stop-color="#14b8a6"/><stop offset=".5" stop-color="#5eead4"/><stop offset="1" stop-color="#14b8a6"/></linearGradient>
       </defs>
-      <path d="M90 250 L230 115 L330 230 L450 95 L570 230 L670 115 L810 250" fill="none" stroke="url(#tg)" stroke-width="96" stroke-linecap="round" stroke-linejoin="round" opacity=".92"/>
-      <circle cx="175" cy="175" r="150" fill="none" stroke="#c9ece8" stroke-width="1" stroke-dasharray="3 6"/>
-      <image href="../assets/img/culture/05.jpg" x="40" y="45" width="270" height="270" preserveAspectRatio="xMidYMid slice" clip-path="url(#c1)"/>
-      <image href="../assets/img/hero/01.jpg" x="315" y="20" width="270" height="270" preserveAspectRatio="xMidYMid slice" clip-path="url(#c2)"/>
-      <circle cx="450" cy="150" r="125" fill="none" stroke="#fff" stroke-width="6"/>
-      <image href="../assets/img/culture/06.jpg" x="590" y="45" width="270" height="270" preserveAspectRatio="xMidYMid slice" clip-path="url(#c3)"/>
-      <circle cx="725" cy="175" r="152" fill="none" stroke="#13a89e" stroke-width="3"/>
+      <path d="M120 360 L360 150 L520 330 L750 110 L980 330 L1140 150 L1380 360" fill="none" stroke="url(#tg)" stroke-width="130" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="270" cy="240" r="226" fill="none" stroke="#99f6e4" stroke-width="1.5" stroke-dasharray="4 8"/>
+      <image href="../assets/img/culture/kit.jpg" x="20" y="50" width="500" height="380" preserveAspectRatio="xMidYMid slice" clip-path="url(#c1)"/>
+      <image href="../assets/img/photo/halves.jpg" x="530" y="10" width="440" height="380" preserveAspectRatio="xMidYMid slice" clip-path="url(#c2)"/>
+      <circle cx="750" cy="200" r="190" fill="none" stroke="#fff" stroke-width="10"/>
+      <image href="../assets/img/photo/field.jpg" x="1000" y="50" width="560" height="380" preserveAspectRatio="xMidYMid slice" clip-path="url(#c3)"/>
+      <circle cx="1230" cy="240" r="218" fill="none" stroke="#14b8a6" stroke-width="4"/>
     </svg>
   </div>
   <div class="bcols">
-    <div><h3>연구개발</h3><p>생장점 배양과 바이러스 진단 기술로<br>깨끗한 무병주를 생산합니다.</p></div>
-    <div><h3>수익사업</h3><p>조직배양묘, 고구마 생과, 기념주를<br>개발하고 판매합니다.</p></div>
-    <div><h3>교육사업</h3><p>조직배양 실습과 창업교육,<br>지역연계 프로그램을 운영합니다.</p></div>
+    <div class="reveal"><h3>연구개발</h3><p>생장점 배양과 바이러스 다중 진단 기술로<br>깨끗한 무병주를 생산합니다.</p></div>
+    <div class="reveal"><h3>수익사업</h3><p>조직배양묘, 고구마 생과, 기념주를<br>개발하고 판매합니다.</p></div>
+    <div class="reveal"><h3>교육사업</h3><p>조직배양 실습과 창업교육,<br>지역연계 프로그램을 운영합니다.</p></div>
   </div>
 </div></section>
 
 <section class="story">
-  <div class="bg" role="img" aria-label="수확한 고구마"></div>
-  <div class="in">
+  <div class="bg" role="img" aria-label="썰어 놓은 고구마"></div>
+  <div class="in reveal">
     <h2 class="sec-t">Story</h2>
     <p>세계 7대 식용작물, 고구마의 가치를<br>서울시립대학교 연구실에서 다시 씁니다</p>
-    <a class="more light" href="#" style="margin-top:22px">고구마 이야기 <b><svg viewBox="0 0 10 10" fill="none"><path d="M2 5h6M5.5 2.5L8 5 5.5 7.5" stroke-width="1.4" stroke-linecap="round"/></svg></b></a>
+    <a class="more light" href="#" style="margin-top:28px">고구마 이야기 <b><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke-width="1.6" stroke-linecap="round"/></svg></b></a>
   </div>
 </section>
 
 <section class="news">
   <div class="l">
-    <h2 class="sec-t">Notice</h2>
-    <h3>더고구마의<br>새로운 소식</h3>
-    <a class="more" href="#">자세히 보기 <b><svg viewBox="0 0 10 10" fill="none"><path d="M2 5h6M5.5 2.5L8 5 5.5 7.5" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/></svg></b></a>
+    <h2 class="sec-t reveal">Notice</h2>
+    <h3 class="reveal">더고구마의<br>새로운 소식</h3>
+    <a class="more reveal" href="#">자세히 보기 <b><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></b></a>
   </div>
   <div class="r">
     <div class="yr">2026</div>
     <div class="arw"><span>↑</span><b>↓</b></div>
-    <div class="circle"><img src="../assets/img/culture/03.jpg" alt=""></div>
-    <h4>2026 식물과 함께하는 라이프 스타일 시리즈 안내</h4>
-    <div class="d">11.02 · 지역연계 프로그램</div>
-    <p>지역연계 프로그램 「식물과 함께하는 라이프 스타일 시리즈」를 안내드립니다. 자세한 일정과 참여 방법은 공지사항에서 확인하실 수 있습니다.</p>
+    <div class="nwrap reveal">
+      <div class="circle"><img src="../assets/img/photo/cut-1.webp" alt=""></div>
+      <div>
+        <span class="tag">지역연계 프로그램</span>
+        <h4>2026 식물과 함께하는 라이프 스타일 시리즈 안내</h4>
+        <div class="d">2026.11.02</div>
+        <p>지역연계 프로그램 「식물과 함께하는 라이프 스타일 시리즈」를 안내드립니다. 자세한 일정과 참여 방법은 공지사항에서 확인하실 수 있습니다.</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="prod"><div class="w">
-  <div class="tx">
+  <div class="tx reveal">
     <h2 class="sec-t">Products</h2>
     <h3>연구실에서 시작된<br>더고구마의 제품</h3>
-    <a class="more light" href="#">제품 소개 <b><svg viewBox="0 0 10 10" fill="none"><path d="M2 5h6M5.5 2.5L8 5 5.5 7.5" stroke-width="1.4" stroke-linecap="round"/></svg></b></a>
+    <div class="chips"><a href="#">조직배양묘</a><a href="#">고구마 생과</a><a href="#">기념주</a></div>
+    <a class="more light" href="#">제품 소개 <b><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke-width="1.6" stroke-linecap="round"/></svg></b></a>
   </div>
-  <div class="frame">
-    <div class="trio">
-      <figure><img src="../assets/img/culture/04.jpg" alt=""><figcaption>조직배양묘</figcaption></figure>
-      <figure><img src="../assets/img/variety/purple/02.jpg" alt=""><figcaption>고구마 생과</figcaption></figure>
-      <figure><div class="ph sq-ph" style="width:clamp(80px,15vw,180px)">기념주<br>사진</div><figcaption>기념주</figcaption></figure>
-    </div>
+  <div class="stage">
+    <img class="p1" src="../assets/img/photo/cut-3.webp" alt="썰어 놓은 고구마">
+    <img class="p2" src="../assets/img/photo/cut-2.webp" alt="">
   </div>
 </div></section>
 
 <footer class="ft"><div class="w">
   <div class="sitemap">
+    <div class="brand">더고구마<small>서울시립대학교 학교기업<br>환경원예학과</small></div>
     <div><b>학교기업 소개</b><a href="#">설립 목적</a><a href="#">오시는 길</a></div>
     <div><b>고구마 이야기</b><a href="#">고구마 이야기</a><a href="#">조직배양기술 이야기</a></div>
     <div><b>사업안내</b><a href="#">교육사업</a><a href="#">수익사업</a></div>
@@ -207,12 +226,12 @@ a{color:inherit;text-decoration:none}
     <div><b>공지사항</b><a href="#">공지사항</a></div>
   </div>
   <div class="fb">
-    <div class="links"><a href="#">개인정보처리방침</a><a href="#">이용약관</a></div>
-    서울특별시 동대문구 서울시립대로 163 서울시립대학교 자연과학대학 환경원예학과<br>
-    Copyright © 서울시립대학교 학교기업 더고구마. All Rights Reserved.
+    <div><div class="links"><a href="#">개인정보처리방침</a><a href="#">이용약관</a></div><div style="margin-top:10px">서울특별시 동대문구 서울시립대로 163 서울시립대학교 자연과학대학 환경원예학과</div></div>
+    <div style="align-self:flex-end">Copyright © 서울시립대학교 학교기업 더고구마. All Rights Reserved.</div>
   </div>
 </div></footer>
 
 <a class="back" href="../">← 시안 목록</a>
+<script src="../assets/common.js"></script>
 </body>
 </html>
