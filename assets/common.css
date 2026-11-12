@@ -11,3 +11,10 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
 .reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}
+/* 로고: 투명 헤더에서는 흰색, 스크롤해 흰 배경이 되면 컬러 */
+.logo img{height:clamp(36px,3.2vw,54px);width:auto;max-width:none;display:block}
+.hd .logo .lg-c{display:none}
+.hd.scrolled .logo .lg-c{display:block}
+.hd.scrolled .logo .lg-w{display:none}
+.flogo{display:block;height:52px;width:auto;max-width:100%;margin-bottom:20px}
+@media(max-width:480px){.logo img{height:32px}.flogo{height:44px}}
