@@ -60,12 +60,23 @@ a{color:inherit;text-decoration:none}
 
 /* business */
 .biz{padding:140px 0 130px;text-align:center}
-.visual{margin:56px auto 0;max-width:1500px}
-.visual svg{width:100%;height:auto;display:block;overflow:visible}
-.bcols{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:1500px;margin:44px auto 0}
-.bcols h3{font-size:1.5rem;font-weight:800;margin:0 0 12px;letter-spacing:-.03em}
-.bcols p{font-size:1rem;color:var(--sub);line-height:1.75;margin:0}
-@media(max-width:760px){.bcols{grid-template-columns:1fr;gap:30px}}
+.bvis{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(28px,4.5vw,90px);max-width:1500px;margin:70px auto 0;text-align:left}
+.vine{position:absolute;left:-2%;top:6%;width:104%;height:62%;z-index:0;pointer-events:none}
+.bi{position:relative;z-index:1;display:block}
+.bi.mid{margin-top:clamp(40px,7vw,120px)}
+.blob{aspect-ratio:1/1.05;overflow:hidden;position:relative;box-shadow:0 26px 50px rgba(15,118,110,.16);transition:border-radius .9s cubic-bezier(.3,.7,.2,1)}
+.b1{border-radius:62% 38% 46% 54% / 48% 40% 60% 52%}
+.b2{border-radius:42% 58% 60% 40% / 56% 44% 56% 44%}
+.b3{border-radius:55% 45% 38% 62% / 42% 58% 42% 58%}
+.bi:hover .blob{border-radius:50% 50% 50% 50% / 50% 50% 50% 50%}
+.blob img{width:100%;height:100%;object-fit:cover;transition:transform .9s}
+.bi:hover .blob img{transform:scale(1.06)}
+.blob::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(15,118,110,.22))}
+.bi .en{display:inline-block;margin-top:30px;font-family:var(--en);font-weight:700;font-size:.82rem;letter-spacing:.16em;color:var(--teal-d)}
+.bi h3{font-size:clamp(1.35rem,1.8vw,1.7rem);font-weight:800;margin:6px 0 12px;letter-spacing:-.035em;transition:color .2s}
+.bi:hover h3{color:var(--teal-d)}
+.bi p{font-size:1rem;color:var(--sub);line-height:1.75;margin:0}
+@media(max-width:760px){.bvis{grid-template-columns:minmax(0,1fr);gap:56px}.bi.mid{margin-top:0}.vine{display:none}.blob{max-width:420px}}
 
 /* story */
 .story{position:relative;min-height:560px;display:grid;place-items:center;text-align:center;color:#fff;overflow:hidden}
@@ -151,27 +162,17 @@ a{color:inherit;text-decoration:none}
 <section class="biz"><div class="w">
   <h2 class="sec-t reveal">Business</h2>
   <a class="more reveal" href="#">사업안내 자세히 보기 <b><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></b></a>
-  <div class="visual reveal">
-    <svg viewBox="0 0 1500 440" role="img" aria-label="연구개발·수익사업·교육사업 사진">
-      <defs>
-        <clipPath id="c1"><circle cx="270" cy="240" r="190"/></clipPath>
-        <clipPath id="c2"><circle cx="750" cy="200" r="190"/></clipPath>
-        <clipPath id="c3"><circle cx="1230" cy="240" r="190"/></clipPath>
-        <linearGradient id="tg" x1="0" x2="1"><stop offset="0" stop-color="#14b8a6"/><stop offset=".5" stop-color="#5eead4"/><stop offset="1" stop-color="#14b8a6"/></linearGradient>
-      </defs>
-      <path d="M120 360 L360 150 L520 330 L750 110 L980 330 L1140 150 L1380 360" fill="none" stroke="url(#tg)" stroke-width="130" stroke-linecap="round" stroke-linejoin="round"/>
-      <circle cx="270" cy="240" r="226" fill="none" stroke="#99f6e4" stroke-width="1.5" stroke-dasharray="4 8"/>
-      <image href="../assets/img/culture/kit.jpg" x="20" y="50" width="500" height="380" preserveAspectRatio="xMidYMid slice" clip-path="url(#c1)"/>
-      <image href="../assets/img/photo/halves.jpg" x="530" y="10" width="440" height="380" preserveAspectRatio="xMidYMid slice" clip-path="url(#c2)"/>
-      <circle cx="750" cy="200" r="190" fill="none" stroke="#fff" stroke-width="10"/>
-      <image href="../assets/img/photo/field.jpg" x="1000" y="50" width="560" height="380" preserveAspectRatio="xMidYMid slice" clip-path="url(#c3)"/>
-      <circle cx="1230" cy="240" r="218" fill="none" stroke="#14b8a6" stroke-width="4"/>
+  <div class="bvis">
+    <svg class="vine" viewBox="0 0 1500 520" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M-20 330 C 180 140, 360 470, 560 300 S 880 60, 1010 300 S 1330 480, 1520 210" fill="none" stroke="#5eead4" stroke-width="2.5" stroke-dasharray="1 11" stroke-linecap="round"/>
+      <circle cx="560" cy="300" r="7" fill="#a3e635"/><circle cx="1010" cy="300" r="7" fill="#14b8a6"/>
     </svg>
-  </div>
-  <div class="bcols">
-    <div class="reveal"><h3>연구개발</h3><p>생장점 배양과 바이러스 다중 진단 기술로<br>깨끗한 무병주를 생산합니다.</p></div>
-    <div class="reveal"><h3>수익사업</h3><p>조직배양묘, 고구마 생과, 기념주를<br>개발하고 판매합니다.</p></div>
-    <div class="reveal"><h3>교육사업</h3><p>조직배양 실습과 창업교육,<br>지역연계 프로그램을 운영합니다.</p></div>
+    <a class="bi reveal" href="#"><div class="blob b1"><img src="../assets/img/culture/kit.jpg" alt="고구마 바이러스 다중 진단 키트" loading="lazy"></div>
+      <span class="en">R&amp;D</span><h3>연구개발</h3><p>생장점 배양과 바이러스 다중 진단 기술로<br>깨끗한 무병주를 생산합니다.</p></a>
+    <a class="bi mid reveal" href="#"><div class="blob b2"><img src="../assets/img/photo/halves.jpg" alt="썰어 놓은 고구마" loading="lazy"></div>
+      <span class="en">PRODUCTS</span><h3>수익사업</h3><p>조직배양묘, 고구마 생과, 기념주를<br>개발하고 판매합니다.</p></a>
+    <a class="bi reveal" href="#"><div class="blob b3"><img src="../assets/img/photo/field.jpg" alt="고구마 밭" loading="lazy"></div>
+      <span class="en">EDUCATION</span><h3>교육사업</h3><p>조직배양 실습과 창업교육,<br>지역연계 프로그램을 운영합니다.</p></a>
   </div>
 </div></section>
 
