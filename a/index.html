@@ -109,8 +109,7 @@ a{color:inherit;text-decoration:none}
 .stage{position:relative;align-self:stretch;min-height:480px}
 .stage::before{content:"";position:absolute;left:4%;right:calc(-1 * var(--gut));top:70px;bottom:-1px;border:clamp(18px,2.4vw,34px) solid rgba(255,255,255,.3);border-right:0;border-bottom:0;border-radius:30px 0 0 0}
 .stage img{position:absolute;filter:drop-shadow(0 24px 30px rgba(6,60,55,.35))}
-.stage .p1{width:min(78%,760px);right:2%;bottom:60px;animation:bob 6s ease-in-out infinite}
-.stage .p2{width:min(46%,430px);left:6%;bottom:20px;transform:rotate(-10deg);animation:bob 7s ease-in-out infinite reverse}
+.stage .p1{width:min(86%,820px);left:50%;bottom:70px;transform:translateX(-46%) rotate(-4deg);animation:bob 6s ease-in-out infinite}
 @keyframes bob{50%{translate:0 -12px}}
 @media(max-width:900px){.prod .w{grid-template-columns:1fr}.prod .tx{padding:80px 0 0}.stage{min-height:300px}.stage::before{top:30px}}
 
@@ -212,7 +211,6 @@ a{color:inherit;text-decoration:none}
   </div>
   <div class="stage">
     <img class="p1" src="../assets/img/photo/cut-3.webp" alt="썰어 놓은 고구마">
-    <img class="p2" src="../assets/img/photo/cut-2.webp" alt="">
   </div>
 </div></section>
 
