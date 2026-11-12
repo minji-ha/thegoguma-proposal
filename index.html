@@ -16,8 +16,9 @@ a{color:inherit;text-decoration:none}
 .k{font-size:.78rem;font-weight:700;color:#7b6f86;letter-spacing:.06em}
 h1{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:800;letter-spacing:-.04em;margin:10px 0 12px}
 .lead{color:#5f636b;max-width:60ch;line-height:1.8;margin:0}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:48px}
-@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;margin-top:48px}
+@media(max-width:1400px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.grid{grid-template-columns:1fr}}
 .card{background:#fff;border-radius:18px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s}
 .card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.08)}
 .pv{height:clamp(220px,18vw,320px);position:relative;display:grid;place-items:center;color:#fff;text-align:center;overflow:hidden}
@@ -26,6 +27,9 @@ h1{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:800;letter-spacing:-.04em;marg
 .a .pv::before{background-image:linear-gradient(rgba(14,40,38,.45),rgba(14,40,38,.45)),url(assets/img/photo/field.jpg)}
 .b .pv{border-bottom-right-radius:70px}
 .b .pv::before{background-image:linear-gradient(rgba(20,40,30,.4),rgba(20,40,30,.4)),url(assets/img/photo/field.jpg)}
+.d .pv{background:linear-gradient(118deg,#e9e1ff,#f5efff 45%,#fff0e2);color:#1d1d24}
+.d .pv img{width:62%;transform:rotate(-8deg);filter:drop-shadow(0 16px 20px rgba(74,40,120,.2))}
+.d .pv .s4{position:absolute;left:22px;top:20px;font-weight:900;color:#6a35a8;font-size:1.2rem;letter-spacing:-.05em}
 .c .pv::before{background-image:linear-gradient(90deg,rgba(7,28,43,.85),rgba(7,28,43,.35)),url(assets/img/photo/dark-orange.jpg)}
 .pv .s1{font-size:1.15rem;font-weight:700;line-height:1.5}
 .pv .s2{font-family:"Nanum Brush Script",cursive;font-size:4.2rem;line-height:1}
@@ -47,7 +51,7 @@ h1{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:800;letter-spacing:-.04em;marg
 <div class="w">
   <div class="k">THE GOGUMA · RENEWAL</div>
   <h1>더고구마 홈페이지 리뉴얼 시안</h1>
-  <p class="lead">서울시립대학교 학교기업 더고구마 메인 화면 시안 3종입니다. 원고는 리뉴얼 의뢰서 내용을 그대로 사용했고, 각 시안을 눌러 실제 화면으로 확인하실 수 있습니다.</p>
+  <p class="lead">서울시립대학교 학교기업 더고구마 메인 화면 시안 4종입니다. 원고는 리뉴얼 의뢰서 내용을 그대로 사용했고, 각 시안을 눌러 실제 화면으로 확인하실 수 있습니다.</p>
 
   <div class="grid">
     <a class="card a" href="a/">
@@ -71,8 +75,15 @@ h1{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:800;letter-spacing:-.04em;marg
         <div class="chips"><i style="background:#0b2a3f"></i><i style="background:#10b981"></i><i style="background:#f97316"></i></div></div>
       <div class="bd"><div class="t"><b>시안 C</b><span>청록 · 연구소형</span></div>
         <p>바이오 연구소 분위기의 남색 히어로와 큰 수치, 기술 탭으로 '연구하는 학교기업'을 강조한 구성입니다.</p>
-        <ul><li>세포·기포 연출 히어로</li><li>설립·품종 수치 타일</li><li>R&amp;D 기술 탭 전환</li><li>오른쪽 섹션 내비게이션</li></ul>
+        <ul><li>사진 히어로 + 등장 효과</li><li>설립·품종 수치 타일</li><li>R&amp;D 기술 탭 전환</li><li>오른쪽 섹션 내비게이션</li></ul>
         <span class="go">시안 C 보기 →</span></div></a>
+    <a class="card d" href="d/">
+      <div class="pv"><span class="s4">더고구마</span><img src="assets/img/photo/cut-3.webp" alt="">
+        <div class="chips"><i style="background:#6a35a8"></i><i style="background:#f1ecfe"></i><i style="background:#ffd2a8"></i></div></div>
+      <div class="bd"><div class="t"><b>시안 D</b><span>파스텔 · 친근형</span></div>
+        <p>라벤더·피치 그라데이션과 파스텔 카드로 부드럽고 밝게 정리한 구성입니다.</p>
+        <ul><li>둥근 그라데이션 히어로 + 고구마 사진</li><li>사업 분야 파스텔 카드 4종</li><li>제품·교육 카드 슬라이더(분류 탭)</li><li>무병주 과정 + 공지사항 패널</li></ul>
+        <span class="go">시안 D 보기 →</span></div></a>
   </div>
 
   <div class="note"><b>사진 안내</b> · 고구마 밭·고구마 사진은 시안용으로 준비한 이미지이며, 조직배양 과정과 진단 키트 사진은 기존 홈페이지 자료입니다. 시안 확정 후 최종 이미지로 정리합니다.</div>
