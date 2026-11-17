@@ -93,7 +93,6 @@ a{color:inherit;text-decoration:none}
 .news .l>*{position:relative;z-index:1}
 .news .l h3{font-size:clamp(1.5rem,2.2vw,2rem);font-weight:800;line-height:1.45;margin:28px 0 44px;letter-spacing:-.04em}
 .news .r{padding:100px var(--gut) 110px clamp(40px,6vw,120px);position:relative}
-.yr{font-family:var(--en);font-weight:800;font-size:1.5rem;color:var(--teal-d)}
 .arw{position:absolute;right:var(--gut);top:100px;display:flex;flex-direction:column;gap:4px;font-size:1.2rem;color:#cbd5e1}
 .arw b{color:var(--ink)}
 .nwrap{display:grid;grid-template-columns:clamp(200px,19vw,340px) minmax(0,1fr);gap:clamp(30px,4vw,64px);align-items:center;margin-top:34px}
@@ -104,8 +103,8 @@ a{color:inherit;text-decoration:none}
 .circle::before{content:"";position:absolute;inset:-14px;border-radius:50%;border:1.5px dashed #5eead4;animation:spin 40s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .circle .dt{position:absolute;right:-6%;bottom:6%;width:34%;aspect-ratio:1;border-radius:50%;background:var(--teal);color:#fff;display:grid;place-content:center;text-align:center;font-family:var(--en);line-height:1.05;box-shadow:0 12px 24px rgba(15,118,110,.3);border:4px solid #fff}
-.circle .dt b{font-size:clamp(1.3rem,2vw,1.9rem);font-weight:800}
-.circle .dt span{font-size:clamp(.6rem,.8vw,.75rem);letter-spacing:.14em;font-weight:600}
+.circle .dt b{font-size:clamp(.82rem,1.15vw,1.12rem);font-weight:800;letter-spacing:.04em;margin-top:2px}
+.circle .dt span{font-size:clamp(.6rem,.8vw,.75rem);letter-spacing:.24em;font-weight:600;opacity:.85}
 .tag{display:inline-block;background:var(--mint);color:var(--deep);font-size:.8rem;font-weight:700;padding:6px 12px;border-radius:99px}
 .news h4{font-size:clamp(1.3rem,1.9vw,1.7rem);font-weight:800;margin:14px 0 0;line-height:1.45;letter-spacing:-.035em}
 .news .d{font-size:.9rem;color:#94a3b8;margin:10px 0 20px;font-family:var(--en)}
@@ -216,10 +215,10 @@ a{color:inherit;text-decoration:none}
     <a class="more reveal" href="#">자세히 보기 <b><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></b></a>
   </div>
   <div class="r">
-    <div class="yr">2026</div>
     <div class="arw"><span>↑</span><b>↓</b></div>
+    <!-- 개발 시: 왼쪽 원형 이미지·THE GOGUMA 배지는 고정, 오른쪽 내용(분류·제목·날짜·요약)만 최신 공지로 바뀜. 위아래 화살표로 이전/다음 공지 -->
     <div class="nwrap reveal">
-      <div class="circle"><div class="ph"><img src="../assets/img/photo/biz-edu.jpg" alt="" loading="lazy"></div><div class="dt"><b>11.02</b><span>NOV</span></div></div>
+      <div class="circle"><div class="ph"><img src="../assets/img/photo/biz-edu.jpg" alt="" loading="lazy"></div><div class="dt"><span>THE</span><b>GOGUMA</b></div></div>
       <div>
         <span class="tag">지역연계 프로그램</span>
         <h4>2026 식물과 함께하는 라이프 스타일 시리즈 안내</h4>
