@@ -324,3 +324,29 @@ thead th{background:#2b2a28}
 /* 글 덩어리는 읽기 좋은 폭 유지 */
 .sec .prose{max-width:860px}.sec .block{max-width:860px}.sec .bars{max-width:720px}.sec .quiz{max-width:900px}
 .sec .sq{max-width:820px}.sec .strip.three{max-width:900px}.sec .tw:has(table.narrow){max-width:560px}
+/* ===== 레이아웃 다듬기: 여백 줄이고 두 칸 배치 ===== */
+.sec{padding-block:clamp(56px,6vw,96px);scroll-margin-top:150px}
+.sv{height:clamp(320px,30vw,440px)}
+.sh{margin-bottom:28px}
+.sec h3{margin-top:40px}
+.sec h2[style]{margin-bottom:24px!important}
+.sec h3[style]{margin-top:44px!important}
+/* 소개 글: 굵은 첫 문장은 왼쪽, 본문은 오른쪽 */
+.sec .prose:has(.lead-p){display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:4px clamp(32px,5vw,80px);max-width:none}
+.sec .prose .lead-p{grid-row:1/span 8;margin:0;font-size:clamp(1.25rem,1.9vw,1.65rem)}
+.sec .prose:has(.lead-p) p:not(.lead-p){margin:0 0 12px}
+.intro .prose{display:block!important}.intro .prose .lead-p{margin-bottom:24px}
+@media(max-width:820px){.sec .prose:has(.lead-p){display:block}.sec .prose .lead-p{margin-bottom:18px}}
+/* 두 칸 */
+.duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px clamp(32px,4vw,64px);align-items:start}
+.duo h3{margin-top:0!important}
+.duo .tw,.duo .block,.duo .sq,.duo .strip.three{max-width:none!important;margin-top:0!important}
+.duo img[style]{max-width:100%!important}
+.duo .strip.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.duo .sq{grid-template-columns:repeat(4,minmax(0,1fr))}
+.sec .duo+h3{margin-top:48px!important}
+@media(max-width:900px){.duo{grid-template-columns:1fr}}
+@media(max-width:480px){.duo .sq{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.photo2{max-width:none}.photo2 img{aspect-ratio:16/8;object-fit:cover;height:auto}
+.cols>*{padding:28px}
+.tw:has(table.narrow)+.note{margin-top:10px}

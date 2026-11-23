@@ -54,7 +54,7 @@ const icard = (k, sub) => {
 // ---------- 원고를 그대로 쓰지 않고 시안 A에 맞게 다시 짠 본문 ----------
 const BODY = {
   about: () => `
-<section class="sec gut"><div class="w"><div class="ct">
+<section class="sec gut" id="purpose"><div class="w"><div class="ct">
   <div class="intro">
     <div class="reveal">
       <h2 style="margin-bottom:30px">설립 목적</h2>
@@ -163,6 +163,20 @@ const productBody = (k) => {
 // 원고 본문(고구마 이야기·조직배양기술)은 .w 안에 .ct 폭 제한만 추가
 const wrapCt = (html) => html.replaceAll('<div class="w">', '<div class="w"><div class="ct">').replaceAll("</div></section>", "</div></div></section>");
 
+// 한 줄로 길게 늘어서 여백이 많던 부분을 두 칸(.duo)으로 나란히 배치
+const duo = (html, re) => { const m = html.match(re); if (!m) throw new Error("polish: " + re); return html.replace(re, `<div class="duo"><div>${m[1]}</div><div>${m[2]}</div></div>`); };
+function polish(id, h) {
+  if (id === "culture") {
+    h = duo(h, /(<h3>생장점 배양[\s\S]*?<\/figure><\/div>)\s*(<h3 style="margin-top:44px">무병원주 증식[\s\S]*?<\/figure><\/div>)/);
+    h = duo(h, /(<img src="[^"]*kit\.jpg"[^>]*>)\s*(<div class="tw"[\s\S]*?<\/table><\/div>)/);
+  }
+  if (id === "sweet-potato") {
+    h = duo(h, /(<div class="block"><p><b>루테인[\s\S]*?<\/div>)\s*(<div class="tw"><table class="narrow">[\s\S]*?<\/table><\/div>)/);
+    h = duo(h, /(<h3>자색고구마 품종<\/h3>\s*<div class="sq">[\s\S]*?<\/figure><\/div>)\s*(<h3 style="margin-top:48px">주황색[\s\S]*?<\/figure><\/div>)/);
+  }
+  return h;
+}
+
 // ---------- 공통 틀 ----------
 const header = (group, id) => `
 <header class="hd" data-hd><div class="w">
@@ -198,9 +212,9 @@ const home = `<svg viewBox="0 0 16 16" fill="none"><path d="M2.5 7.5L8 3l5.5 4.5
 
 for (const p of PAGES.filter((p) => p.id !== "home")) {
   const m = MENU[p.group];
-  const ks = p.id === "about" ? null : kids(m);
+  const ks = p.id === "about" ? [["#purpose", "설립 목적"], ["#map", "오시는 길"]] : kids(m);
   const [bg, pos] = BANNER[p.id];
-  const body = BODY[p.id] ? BODY[p.id]() : p.id === "profit" ? profitBody() : PRODUCTS[p.id] ? productBody(p.id) : wrapCt(p.body(ctx));
+  const body = polish(p.id, BODY[p.id] ? BODY[p.id]() : p.id === "profit" ? profitBody() : PRODUCTS[p.id] ? productBody(p.id) : wrapCt(p.body(ctx)));
   const crumb = [m.ko, p.h1 !== m.ko ? p.h1 : null].filter(Boolean);
   const html = `<!doctype html>
 <html lang="ko">
@@ -214,7 +228,7 @@ for (const p of PAGES.filter((p) => p.id !== "home")) {
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;800&display=swap">
 <link rel="stylesheet" href="../assets/common.css?v=3">
-<link rel="stylesheet" href="sub.css?v=8">
+<link rel="stylesheet" href="sub.css?v=9">
 </head>
 <body>
 ${header(p.group, p.id)}
@@ -230,7 +244,7 @@ ${header(p.group, p.id)}
     <div class="crumb"><a href="./" aria-label="홈">${home}</a>${crumb.map((c) => `<i>›</i><span>${c}</span>`).join("")}</div>
   </div>
 </section>
-${ks && ks.length > 1 ? `<nav class="stab" aria-label="${m.ko} 하위 메뉴"><div class="w">${ks.map(([k, t]) => `<a href="${ctx.href(k)}"${k === p.id ? ' class="on" aria-current="page"' : ""}>${t}</a>`).join("")}</div></nav>` : ""}
+${ks && ks.length > 1 ? `<nav class="stab" aria-label="${m.ko} 하위 메뉴"><div class="w">${ks.map(([k, t]) => `<a href="${k.startsWith("#") ? k : ctx.href(k)}"${k === p.id || k === "#purpose" ? ' class="on" aria-current="page"' : ""}>${t}</a>`).join("")}</div></nav>` : ""}
 
 <main>
 ${body}
@@ -240,7 +254,7 @@ ${footer}
 <a class="top-btn" href="#" aria-label="맨 위로"><svg viewBox="0 0 16 16" fill="none"><path d="M8 13V3M3.5 7.5L8 3l4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 <a class="back" href="../">← 시안 목록</a>
 <script src="../assets/common.js"></script>
-<script src="sub.js?v=1"></script>
+<script src="sub.js?v=3"></script>
 </body>
 </html>
 `;
