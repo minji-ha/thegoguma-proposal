@@ -19,7 +19,7 @@ const S = (f) => `../assets/img/sub/${f}`;
 const BANNER = {
   about: [P("field.jpg"), "center 70%"], "sweet-potato": [P("halves.jpg"), "center 55%"], culture: ["../assets/img/bg/lab.jpg", "center"],
   education: [S("bn-edu.jpg"), "center"], profit: [S("bn-profit.jpg"), "center"],
-  seedling: [S("bn-prod.jpg"), "center"], fresh: [S("bn-prod.jpg"), "center"], liquor: [S("bn-prod.jpg"), "center"],
+  seedling: [S("bn-prod.jpg"), "center"], fresh: [S("bn-prod.jpg"), "center"], liquor: [S("bn-profit.jpg"), "center"],
   notice: [S("bn-notice.jpg"), "center 40%"],
 };
 const MENU_EN = ["ABOUT US", "SWEET POTATO", "BUSINESS", "PRODUCTS", "NOTICE"];
@@ -30,13 +30,25 @@ const href = (id) => id.includes("#") ? FILE[id.split("#")[0]] + "#" + id.split(
 const PROD_IMG = {
   seedling: { src: P("seedling2.jpg"), pos: "50% 52%", alt: "배양 용기 속 고구마 조직배양묘" },
   fresh: { src: P("fresh.jpg"), pos: "50% 50%", alt: "고구마 생과" },
-  liquor: { src: P("liquor2.jpg"), pos: "62% 55%", alt: "더고구마 기념주" },
+  liquor: { src: P("liquor-soon.svg"), pos: "50% 50%", alt: "기념주 준비 중 일러스트", soon: true },
+};
+// 판매 방식 (26.11.23 요청): 조직배양묘는 학교기업 직접 판매, 생과·기념주는 협력업체 판매사이트로 연결.
+// 개발 시: 제품별 판매 링크와 버튼 표시 여부(on/off)를 관리자 화면에서 설정.
+const SALE = {
+  seedling: { by: "학교기업 더고구마가 직접 생산·판매합니다.", btn: "구매하러 가기", on: true },
+  fresh: { by: "협력업체를 통해 판매됩니다. 버튼을 누르면 협력업체 판매사이트로 이동합니다.", btn: "판매사이트로 이동", on: true },
+  liquor: { by: "현재 시제품 개발 중입니다. 출시 후 협력업체 판매사이트에서 구매하실 수 있습니다.", btn: "판매 준비 중", on: false },
+};
+const LEAD = {
+  seedling: "생장점 배양으로 바이러스를 제거한 무병주를 학교기업 연구실에서 직접 생산합니다.",
+  fresh: "분자마커로 선발한 단일 품종 고구마를 협력업체를 통해 소개합니다.",
+  liquor: "고구마를 활용해 빚는 학교기업 기념주입니다. 지금 시제품을 개발하고 있습니다.",
 };
 const arrow = `<svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>`;
 const icard = (k, sub) => {
   const d = PRODUCTS[k], im = PROD_IMG[k];
-  return `<a class="ic reveal" href="${ctx.href(k)}"><div class="im"><img src="${im.src}" alt="${im.alt}" loading="lazy" style="object-position:${im.pos}"></div>
-    <div class="tx"><span>${d.en.toUpperCase()}</span><h3>${d.t}</h3>${sub ? `<p>${d.lead}</p>` : ""}<div class="go">자세히 보기 <b>→</b></div></div></a>`;
+  return `<a class="ic reveal" href="${ctx.href(k)}"><div class="im"><img src="${im.src}" alt="${im.alt}" loading="lazy" style="object-position:${im.pos}">${im.soon ? "<em>준비 중</em>" : ""}</div>
+    <div class="tx"><span>${d.en.toUpperCase()}</span><h3>${d.t}</h3>${sub ? `<p>${LEAD[k]}</p>` : ""}<div class="go">자세히 보기 <b>→</b></div></div></a>`;
 };
 
 // ---------- 원고를 그대로 쓰지 않고 시안 A에 맞게 다시 짠 본문 ----------
@@ -112,7 +124,10 @@ const BODY = {
 // 수익사업: 원고 본문을 쓰되 '현재 판매 제품' 카드만 사진 카드로 교체
 const profitBody = () => {
   const base = PAGES.find((p) => p.id === "profit").body(ctx);
-  return base.replace(/<div class="cols"><a class="colink"[\s\S]*?<\/a><\/div>/,
+  return base
+    .replace("지금은 고구마 무병조직배양묘, 고구마 생과, 고구마를 활용한 기념주를 제작하여 판매에 힘쓰고 있습니다.", "지금은 고구마 무병조직배양묘를 직접 생산·판매하고, 고구마 생과와 고구마를 활용한 기념주는 협력업체와 함께 선보이고 있습니다.")
+    .replace(">현재 판매 제품</h2>", ">제품 소개</h2>")
+    .replace(/<div class="cols"><a class="colink"[\s\S]*?<\/a><\/div>/,
     `<div class="icards">${["seedling", "fresh", "liquor"].map((k) => icard(k, true)).join("")}</div>`);
 };
 
@@ -123,16 +138,18 @@ const productBody = (k) => {
   return `
 <section class="sec gut"><div class="w"><div class="ct">
   <div class="pd">
-    <div class="shot reveal"><img src="${im.src}" alt="${im.alt}" style="object-position:${im.pos}"><span class="lb">THE GOGUMA</span></div>
+    <div class="shot reveal"><img src="${im.src}" alt="${im.alt}" style="object-position:${im.pos}"><span class="lb">${im.soon ? "COMING SOON" : "THE GOGUMA"}</span>${im.soon ? '<em class="soon">시제품 개발 중 · 제품 이미지 준비 중</em>' : ""}</div>
     <div class="reveal">
       <div class="en">${d.en}</div>
       <h2>${d.t}</h2>
-      <p class="lp">${d.lead} 서울시립대학교 연구실에서 정성껏 키운 더고구마 제품에 많은 관심 부탁드립니다.</p>
-      <dl class="spec">${d.spec.map(([a, b]) => `<div><dt>${a}</dt><dd>${b}</dd></div>`).join("")}</dl>
+      <p class="lp">${LEAD[k]} 많은 관심 부탁드립니다.</p>
+      <dl class="spec">${d.spec.map(([a, b]) => `<div><dt>${a}</dt><dd>${a === "구매" ? "협력업체 판매사이트" : b}</dd></div>`).join("")}</dl>
       <div class="buy">
-        <!-- 개발 시: PRODUCTS.${k}.url(외부 판매처)로 연결 -->
-        <a class="btn" href="${d.url || "#"}"${d.url ? ' target="_blank" rel="noopener"' : ""}>구매하러 가기 <b>→</b></a>
-        <p>구매는 외부 판매처에서 진행됩니다.${d.note ? `<br>${d.note}` : ""}</p>
+        <!-- 개발 시: 판매 링크와 버튼 표시(on/off)를 관리자가 제품별로 설정. off면 '판매 준비 중'으로 표시 -->
+        ${SALE[k].on
+          ? `<a class="btn" href="${d.url || "#"}"${d.url ? ' target="_blank" rel="noopener"' : ""}>${SALE[k].btn} <b>→</b></a>`
+          : `<span class="btn off">${SALE[k].btn}</span>`}
+        <p>${SALE[k].by}</p>
       </div>
     </div>
   </div>
@@ -197,7 +214,7 @@ for (const p of PAGES.filter((p) => p.id !== "home")) {
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;800&display=swap">
 <link rel="stylesheet" href="../assets/common.css?v=3">
-<link rel="stylesheet" href="sub.css?v=2">
+<link rel="stylesheet" href="sub.css?v=3">
 </head>
 <body>
 ${header(p.group, p.id)}
@@ -208,7 +225,7 @@ ${header(p.group, p.id)}
     <div>
       <div class="en">${p.eyebrow}</div>
       <h1>${p.h1}</h1>
-      ${p.lead ? `<p class="lead">${p.lead}</p>` : ""}
+      ${p.lead ? `<p class="lead">${LEAD[p.id] || p.lead}</p>` : ""}
     </div>
     <div class="crumb"><a href="./" aria-label="홈">${home}</a>${crumb.map((c) => `<i>›</i><span>${c}</span>`).join("")}</div>
   </div>

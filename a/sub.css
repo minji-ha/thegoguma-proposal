@@ -272,3 +272,9 @@ a.ic:hover .im img{transform:scale(1.08)}
 .top-btn.on{opacity:1;pointer-events:auto}
 .top-btn svg{width:18px;height:18px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* 준비 중 (기념주 이미지 없음) */
+.ic .im,.pd .shot{position:relative}
+.ic .im em{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);background:var(--deep);color:#fff;font-style:normal;font-weight:700;font-size:.8rem;padding:6px 14px;border-radius:99px;white-space:nowrap}
+.pd .shot em.soon{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);background:var(--deep);color:#fff;font-style:normal;font-weight:700;font-size:.9rem;padding:9px 18px;border-radius:99px;white-space:nowrap}
+.btn.off{background:#e2e8f0;color:#94a3b8;box-shadow:none;cursor:default}
+.btn.off:hover{background:#e2e8f0;transform:none}
