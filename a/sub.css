@@ -1,3 +1,24 @@
+/* 세 시안 공통: 와이드 여백, 시안 목록 버튼, 사진 준비 중 자리 */
+:root{--gut:clamp(20px,7.8vw,200px)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+.w{padding-left:max(var(--gut),env(safe-area-inset-left,0px));padding-right:max(var(--gut),env(safe-area-inset-right,0px))}
+.back{position:fixed;left:max(16px,env(safe-area-inset-left,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));z-index:999;background:rgba(20,20,24,.82);color:#fff!important;
+  font:600 13px/1 Pretendard,"Pretendard Variable","Noto Sans KR",system-ui,sans-serif;padding:11px 16px;border-radius:99px;text-decoration:none;backdrop-filter:blur(6px)}
+.back:hover{background:#000}
+.ph{display:grid;place-items:center;text-align:center;background:repeating-linear-gradient(135deg,#eef0f3 0 10px,#e6e9ed 10px 20px);
+  color:#8a929c;font-size:.8rem;font-weight:700;line-height:1.5}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}
+/* 로고: 투명 헤더에서는 흰색, 스크롤해 흰 배경이 되면 컬러 */
+.logo img{height:clamp(36px,3.2vw,54px);width:auto;max-width:none;display:block}
+.hd .logo .lg-c{display:none}
+.hd.scrolled .logo .lg-c{display:block}
+.hd.scrolled .logo .lg-w{display:none}
+.flogo{display:block;height:52px;width:auto;max-width:100%;margin-bottom:20px}
+@media(max-width:480px){.logo img{height:32px}.flogo{height:44px}}
+
 /* 시안 A 서브페이지 — 메인(index.html)과 같은 색·헤더·푸터, 본문 구성요소는 민트 틸 톤으로 */
 :root{
   --teal:#1f1f1f; --teal-d:#4f7d5c; --deep:#2b2a28; --mint:#f6f4f1; --mint-2:#ece8e3; --lime:#a63d62;
@@ -351,3 +372,109 @@ thead th{background:#2b2a28}
 .cols>*{padding:28px}
 .tw:has(table.narrow)+.note{margin-top:10px}
 .map .mbox{min-height:clamp(320px,32vw,460px)}
+
+/* 실제 사이트 전용: 공지 게시판(버튼 페이지 번호·필독·빈 목록·본문 이미지) */
+.pager button{width:40px;height:40px;border-radius:50%;border:0;background:none;display:grid;place-items:center;font-family:var(--en);font-weight:600;font-size:.95rem;color:var(--sub);cursor:pointer}
+.pager button.on{background:var(--ink);color:#fff}
+.nlist .no.pin{font-family:var(--kr);color:var(--potato);font-weight:800;font-size:.85rem}
+.nlist .body{white-space:pre-line}
+.nlist .body:empty{display:none}
+.nlist .body img{display:block;margin:16px 0 0;max-width:min(100%,720px);border-radius:12px}
+.nlist .empty{padding:48px 10px;text-align:center;color:var(--faint)}
+:focus-visible{outline:2px solid var(--green,#4f7d5c);outline-offset:3px}
+
+/* ===== 서브페이지 매거진형 (26.11.23) =====
+   흰 바탕 편집형 머리 + 넓은 사진 + 번호 붙은 섹션(왼쪽 제목 / 오른쪽 본문), 굵은 세리프 제목, 얇은 구분선 */
+:root{--serif:"Noto Serif KR","Nanum Myeongjo",serif;--rule:#e4e0db}
+body{font-size:17px}
+
+/* 헤더: 서브페이지는 처음부터 흰 바탕 */
+.hd.solid{background:rgba(255,255,255,.97);color:var(--ink);box-shadow:0 1px 0 var(--rule)}
+.hd.solid .logo .lg-c{display:block}.hd.solid .logo .lg-w{display:none}
+
+/* 편집형 머리 */
+.mh{padding:calc(88px + clamp(48px,6vw,96px)) 0 clamp(36px,4vw,56px)}
+@media(max-width:960px){.mh{padding-top:calc(70px + 40px)}}
+.mh .crumb{display:flex;align-items:center;gap:10px;font-size:.84rem;font-weight:600;color:var(--faint);margin-bottom:clamp(28px,3.5vw,48px)}
+.mh .crumb a{color:var(--faint);display:grid}.mh .crumb a:hover{color:var(--ink)}
+.mh .crumb i{font-style:normal;opacity:.5}
+.mh .crumb span:last-child{color:var(--ink)}
+.mh-g{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:24px clamp(40px,6vw,120px);align-items:end}
+.mh .en{font-family:var(--en);font-weight:600;font-size:.8rem;letter-spacing:.32em;text-transform:uppercase;color:var(--green)}
+.mh h1{font-family:var(--serif);font-weight:700;font-size:clamp(2.6rem,6.2vw,5.6rem);line-height:1.12;letter-spacing:-.04em;margin:18px 0 0;color:var(--ink)}
+.mh .lead{font-size:clamp(1.05rem,1.4vw,1.3rem);line-height:1.8;color:var(--sub);margin:0;padding-bottom:10px;max-width:34ch}
+@media(max-width:820px){.mh-g{grid-template-columns:1fr}.mh .lead{max-width:none}}
+.mtab{display:flex;gap:clamp(18px,2.4vw,36px);margin-top:clamp(36px,4vw,60px);border-top:1px solid var(--ink);padding-top:18px;flex-wrap:wrap}
+.mtab a{font-weight:700;font-size:1rem;color:var(--faint);padding-bottom:4px;border-bottom:2px solid transparent}
+.mtab a:hover{color:var(--ink)}
+.mtab a.on{color:var(--ink);border-bottom-color:var(--potato)}
+
+/* 넓은 사진 (어둡게 덮지 않음) */
+.mfig{margin:0}
+.mfig .img{aspect-ratio:21/8;border-radius:4px;background-size:cover;background-position:center;animation:mzin 1.4s cubic-bezier(.2,.7,.2,1) both}
+@keyframes mzin{from{opacity:0;transform:scale(1.02)}to{opacity:1;transform:none}}
+@media(max-width:700px){.mfig .img{aspect-ratio:4/3}}
+
+/* 섹션: 색 띠 대신 얇은 선 */
+.sec.mzs{padding-block:clamp(56px,7vw,110px)}
+.sec.mzs.soft,.sec.mzs.pnext{background:none;color:var(--ink)}
+.sec.mzs+.sec.mzs>.w>.ct{border-top:1px solid var(--rule);padding-top:clamp(56px,7vw,110px)}
+.sec.mzs+.sec.mzs{padding-top:0}
+.sec.mzs h2::before{display:none}
+.mz{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:28px clamp(40px,5vw,96px);align-items:start}
+.mz-h{position:sticky;top:120px}
+.mz-h .no{display:block;font-family:var(--en);font-weight:500;font-size:.85rem;letter-spacing:.2em;color:var(--potato);margin-bottom:14px}
+.mz-h h2{font-family:var(--serif);font-weight:700;font-size:clamp(1.7rem,2.6vw,2.5rem);line-height:1.3;letter-spacing:-.04em;padding:0;margin:0!important;color:var(--ink)}
+.mz-h p{margin:16px 0 0;color:var(--sub);font-size:.98rem;line-height:1.75}
+.mz-b{min-width:0}
+.mz-b>:first-child{margin-top:0}
+@media(max-width:900px){.mz{grid-template-columns:1fr}.mz-h{position:static}}
+
+/* 본문 타이포 */
+.sec .prose p{font-size:1.06rem;line-height:1.95;color:#45413d}
+.sec .lead-p{font-family:var(--serif);font-weight:600;color:var(--ink);line-height:1.6;letter-spacing:-.03em}
+.sec .prose:has(.lead-p){grid-template-columns:minmax(0,1fr) minmax(0,1.15fr)}
+.sec h3{font-family:var(--serif);font-weight:700;font-size:clamp(1.15rem,1.5vw,1.35rem);letter-spacing:-.03em}
+.mz-b .duo{gap:28px 40px}
+.mz-b .cols,.mz-b .facts,.mz-b .icards{gap:16px}
+.mz-b .icards{grid-template-columns:repeat(2,minmax(0,1fr))}
+.mz-b .icards:has(>:nth-child(3)){grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:1100px){.mz-b .icards:has(>:nth-child(3)){grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.mz-b .icards,.mz-b .icards:has(>:nth-child(3)){grid-template-columns:1fr}}
+
+/* 카드·블록: 상자감 줄이고 선과 여백으로 */
+.cols>*,.fact{background:none!important;border-top:2px solid var(--ink);border-radius:0;padding:20px 0 0}
+.cols>* h3,.fact h3{font-family:var(--serif)}
+.block{background:none!important;border-left:2px solid var(--potato);border-radius:0;padding:4px 0 4px 22px}
+.ic{box-shadow:none;border-radius:0;background:none}
+.ic .im{border-radius:4px}
+.ic .tx{padding:18px 2px 0}
+.ic .tx h3{font-family:var(--serif)}
+a.ic:hover{transform:none}
+a.ic:hover .tx h3{text-decoration:underline;text-underline-offset:4px}
+.tw{border:0;border-top:2px solid var(--ink);border-radius:0;background:none}
+thead th{background:none!important;color:var(--sub)!important;border-bottom:1px solid var(--ink)}
+tr.hl td{background:var(--potato-l)}
+.bars{background:none!important;padding:0}
+.bar .t{background:#efece8}
+.route span{box-shadow:none;border:1px solid var(--rule)}
+.quiz{border-radius:4px}
+.tiles figure{box-shadow:none;border-radius:4px;background:#f6f4f1}
+.strip img,.photo2 img,.sq img{border-radius:4px}
+.sq img{border-radius:50%}
+.stats div{border-top:1px solid var(--ink)}
+.stats b{font-family:var(--serif);font-weight:700}
+.intro .pic{border-radius:4px;box-shadow:none}
+.map .mbox{border-radius:4px}
+.map dl{background:none;padding:0;border-top:2px solid var(--ink);border-radius:0}
+
+/* 제품 상세 */
+.pd .shot{border-radius:4px;box-shadow:none}
+.pd h2{font-family:var(--serif);font-size:clamp(2rem,3.4vw,3rem)}
+.pd .lp{font-size:1.1rem;line-height:1.9}
+.spec{border-top:2px solid var(--ink)}
+.pnext .ic{background:none!important;border:0!important;color:var(--ink)!important}
+
+/* 공지 게시판 */
+.nlist{border-top:2px solid var(--ink)}
+.nlist .t{font-size:1.08rem}

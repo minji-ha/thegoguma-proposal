@@ -7,4 +7,4 @@
 - 시안 C: `c/` 남색 · 연구소형
 - 시안 D: `d/` 파스텔
 
-시안 A(선택안) 서브페이지: `a/about.html` 등 9개. `node _tools/build-a-sub.mjs` 로 `web/src/site.mjs` 원고에서 다시 생성.
+시안 A(선택안) 서브페이지: `a/about.html` 등 9개. `node _tools/build-a-sub.mjs` 로 실제 사이트와 같은 코드(`web/src/a-theme.mjs`)에서 다시 생성.
