@@ -164,14 +164,40 @@ a{color:inherit;text-decoration:none}
 
 .gnb a{display:flex;flex-direction:column;align-items:center;line-height:1.2;text-align:center}
 .gnb a small{display:block;font-family:Pretendard,"Pretendard Variable",system-ui,sans-serif;font-size:.6rem;font-weight:500;letter-spacing:.12em;opacity:.6;margin-top:4px}
+
+/* 메뉴: 하위 메뉴 펼침 + 모바일 메뉴 (서브페이지와 동일) */
+.gnb>div{position:relative}
+.gnb>div>a{display:flex}
+.gnb .dd{position:absolute;left:50%;top:100%;transform:translate(-50%,8px);background:#fff;color:var(--ink);border-radius:16px;padding:10px;min-width:180px;box-shadow:0 18px 40px rgba(15,23,42,.12);opacity:0;visibility:hidden;transition:opacity .2s,transform .2s}
+.gnb>div:hover .dd,.gnb>div:focus-within .dd{opacity:1;visibility:visible;transform:translate(-50%,14px)}
+.gnb .dd a{display:block;padding:10px 14px;border-radius:10px;font-size:.92rem;font-weight:600;white-space:nowrap;opacity:1;text-align:left}
+.gnb .dd a::after{display:none}
+.gnb .dd a:hover{background:var(--mint);color:var(--deep)}
+.burger{width:40px;height:40px;border:0;background:none;color:inherit;padding:8px;cursor:pointer;position:relative}
+.burger i,.burger::before,.burger::after{content:"";position:absolute;left:8px;right:8px;height:2px;background:currentColor;border-radius:2px;transition:transform .25s,opacity .2s}
+.burger::before{top:13px}.burger i{top:19px}.burger::after{top:25px;bottom:auto}
+.hd.open{background:rgba(255,255,255,.96);color:var(--ink)}
+.hd.open .logo .lg-c{display:block}.hd.open .logo .lg-w{display:none}
+.hd.open .burger::before{transform:translateY(6px) rotate(45deg)}.hd.open .burger i{opacity:0}.hd.open .burger::after{transform:translateY(-6px) rotate(-45deg)}
+.mnav{display:none}
+@media(min-width:961px){.burger{display:none}}
+@media(max-width:960px){
+  .mnav{position:fixed;inset:70px 0 0;background:#fff;color:var(--ink);overflow-y:auto;padding:12px var(--gut) 40px;display:block;opacity:0;visibility:hidden;transition:opacity .25s}
+  .hd.open .mnav{opacity:1;visibility:visible}
+  .mnav div{border-bottom:1px solid var(--line);padding:18px 0}
+  .mnav b{display:block;font-size:1.15rem;font-weight:800;margin-bottom:8px}
+  .mnav b small{font-family:var(--en);font-weight:600;font-size:.7rem;letter-spacing:.14em;color:var(--teal-d);margin-left:8px}
+  .mnav a{display:inline-block;margin:4px 14px 4px 0;color:var(--sub);font-weight:600}
+}
 </style>
 </head>
 <body>
 
 <header class="hd" data-hd><div class="w">
-  <a class="logo" href="#"><img class="lg-w" src="../assets/img/logo-w.png" alt="서울시립대 더 고구마"><img class="lg-c" src="../assets/img/logo.png" alt=""></a>
-  <nav class="gnb"><a href="#">학교기업 소개<small>ABOUT US</small></a><a href="#">고구마 이야기<small>SWEET POTATO</small></a><a href="#">사업안내<small>BUSINESS</small></a><a href="#">제품 소개<small>PRODUCTS</small></a><a href="#">공지사항<small>NOTICE</small></a></nav>
-  <div class="util"><span class="burger"><span></span></span></div>
+  <a class="logo" href="./"><img class="lg-w" src="../assets/img/logo-w.png" alt="서울시립대 더 고구마"><img class="lg-c" src="../assets/img/logo.png" alt=""></a>
+  <nav class="gnb" aria-label="주 메뉴"><div><a href="about.html">학교기업 소개<small>ABOUT US</small></a><div class="dd"><a href="about.html">설립 목적</a><a href="about.html#map">오시는 길</a></div></div><div><a href="sweet-potato.html">고구마 이야기<small>SWEET POTATO</small></a><div class="dd"><a href="sweet-potato.html">고구마 이야기</a><a href="culture.html">조직배양기술 이야기</a></div></div><div><a href="education.html">사업안내<small>BUSINESS</small></a><div class="dd"><a href="education.html">교육사업</a><a href="profit.html">수익사업</a></div></div><div><a href="seedling.html">제품 소개<small>PRODUCTS</small></a><div class="dd"><a href="seedling.html">조직배양묘</a><a href="fresh.html">고구마 생과</a><a href="liquor.html">기념주</a></div></div><div><a href="notice.html">공지사항<small>NOTICE</small></a></div></nav>
+  <div class="util"><button class="burger" aria-label="메뉴 열기" aria-expanded="false"><i></i></button></div>
+  <nav class="mnav" aria-label="모바일 메뉴"><div><b>학교기업 소개<small>ABOUT US</small></b><a href="about.html">설립 목적</a><a href="about.html#map">오시는 길</a></div><div><b>고구마 이야기<small>SWEET POTATO</small></b><a href="sweet-potato.html">고구마 이야기</a><a href="culture.html">조직배양기술 이야기</a></div><div><b>사업안내<small>BUSINESS</small></b><a href="education.html">교육사업</a><a href="profit.html">수익사업</a></div><div><b>제품 소개<small>PRODUCTS</small></b><a href="seedling.html">조직배양묘</a><a href="fresh.html">고구마 생과</a><a href="liquor.html">기념주</a></div><div><b>공지사항<small>NOTICE</small></b><a href="notice.html">공지사항</a></div></nav>
 </div></header>
 
 <section class="hero">
@@ -185,17 +211,17 @@ a{color:inherit;text-decoration:none}
 
 <section class="biz"><div class="w">
   <h2 class="sec-t reveal">Business</h2>
-  <a class="more reveal" href="#">사업안내 자세히 보기 <b><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></b></a>
+  <a class="more reveal" href="education.html">사업안내 자세히 보기 <b><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></b></a>
   <div class="bvis">
     <svg class="vine" viewBox="0 0 1500 520" preserveAspectRatio="none" aria-hidden="true">
       <path d="M-20 330 C 180 140, 360 470, 560 300 S 880 60, 1010 300 S 1330 480, 1520 210" fill="none" stroke="#5eead4" stroke-width="2.5" stroke-dasharray="1 11" stroke-linecap="round"/>
       <circle cx="560" cy="300" r="7" fill="#a3e635"/><circle cx="1010" cy="300" r="7" fill="#14b8a6"/>
     </svg>
-    <a class="bi reveal" href="#"><div class="blob b1"><img src="../assets/img/photo/biz-rnd.jpg" alt="현미경과 배양 중인 고구마 모종" loading="lazy"></div>
+    <a class="bi reveal" href="culture.html"><div class="blob b1"><img src="../assets/img/photo/biz-rnd.jpg" alt="현미경과 배양 중인 고구마 모종" loading="lazy"></div>
       <span class="en">R&amp;D</span><h3>연구개발</h3><p>생장점 배양과 바이러스 다중 진단 기술로<br>깨끗한 무병주를 생산합니다.</p></a>
-    <a class="bi mid reveal" href="#"><div class="blob b2"><img src="../assets/img/photo/biz-products.jpg" alt="고구마와 고구마 가공품" loading="lazy"></div>
+    <a class="bi mid reveal" href="profit.html"><div class="blob b2"><img src="../assets/img/photo/biz-products.jpg" alt="고구마와 고구마 가공품" loading="lazy"></div>
       <span class="en">PRODUCTS</span><h3>수익사업</h3><p>조직배양묘, 고구마 생과, 기념주를<br>개발하고 판매합니다.</p></a>
-    <a class="bi reveal" href="#"><div class="blob b3"><img src="../assets/img/photo/biz-edu.jpg" alt="교육 강의실" loading="lazy"></div>
+    <a class="bi reveal" href="education.html"><div class="blob b3"><img src="../assets/img/photo/biz-edu.jpg" alt="교육 강의실" loading="lazy"></div>
       <span class="en">EDUCATION</span><h3>교육사업</h3><p>조직배양 실습과 창업교육,<br>지역연계 프로그램을 운영합니다.</p></a>
   </div>
 </div></section>
@@ -205,7 +231,7 @@ a{color:inherit;text-decoration:none}
   <div class="in reveal">
     <h2 class="sec-t">Story</h2>
     <p>세계 7대 식용작물, 고구마의 가치를<br>서울시립대학교 연구실에서 다시 씁니다</p>
-    <a class="more light" href="#" style="margin-top:28px">고구마 이야기 <b><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke-width="1.6" stroke-linecap="round"/></svg></b></a>
+    <a class="more light" href="sweet-potato.html" style="margin-top:28px">고구마 이야기 <b><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke-width="1.6" stroke-linecap="round"/></svg></b></a>
   </div>
 </section>
 
@@ -213,7 +239,7 @@ a{color:inherit;text-decoration:none}
   <div class="l">
     <h2 class="sec-t reveal">Notice</h2>
     <h3 class="reveal">더고구마의<br>새로운 소식</h3>
-    <a class="more reveal" href="#">자세히 보기 <b><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></b></a>
+    <a class="more reveal" href="notice.html">자세히 보기 <b><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></b></a>
   </div>
   <div class="r">
     <div class="arw"><span>↑</span><b>↓</b></div>
@@ -235,23 +261,23 @@ a{color:inherit;text-decoration:none}
     <h2 class="sec-t">Products</h2>
     <h3>연구실에서 시작된<br>더고구마의 제품</h3>
     <p style="margin:-14px 0 30px;opacity:.9;line-height:1.8;font-size:1.05rem">서울시립대학교 연구실에서 정성껏 키운 조직배양묘와 고구마, 기념주를 판매하고 있습니다.<br>더고구마에 많은 관심 부탁드립니다.</p>
-    <a class="more light" href="#">제품 소개 <b><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke-width="1.6" stroke-linecap="round"/></svg></b></a>
+    <a class="more light" href="seedling.html">제품 소개 <b><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke-width="1.6" stroke-linecap="round"/></svg></b></a>
   </div>
   <div class="pcards">
-    <a class="pc reveal" href="#"><div class="pi wh"><img src="../assets/img/photo/seedling2.jpg" alt="조직배양묘" loading="lazy"></div><div class="pt"><span>Seedling</span><b>조직배양묘</b></div><i>→</i></a>
-    <a class="pc reveal" href="#" style="transition-delay:.1s"><div class="pi"><img src="../assets/img/photo/fresh.jpg" alt="고구마 생과" loading="lazy"></div><div class="pt"><span>Fresh</span><b>고구마 생과</b></div><i>→</i></a>
-    <a class="pc reveal" href="#" style="transition-delay:.2s"><div class="pi"><img src="../assets/img/photo/liquor2.jpg" alt="더고구마 기념주" loading="lazy" style="object-position:62% 55%"></div><div class="pt"><span>Liquor</span><b>기념주</b></div><i>→</i></a>
+    <a class="pc reveal" href="seedling.html"><div class="pi wh"><img src="../assets/img/photo/seedling2.jpg" alt="조직배양묘" loading="lazy"></div><div class="pt"><span>Seedling</span><b>조직배양묘</b></div><i>→</i></a>
+    <a class="pc reveal" href="fresh.html" style="transition-delay:.1s"><div class="pi"><img src="../assets/img/photo/fresh.jpg" alt="고구마 생과" loading="lazy"></div><div class="pt"><span>Fresh</span><b>고구마 생과</b></div><i>→</i></a>
+    <a class="pc reveal" href="liquor.html" style="transition-delay:.2s"><div class="pi"><img src="../assets/img/photo/liquor2.jpg" alt="더고구마 기념주" loading="lazy" style="object-position:62% 55%"></div><div class="pt"><span>Liquor</span><b>기념주</b></div><i>→</i></a>
   </div>
 </div></section>
 
 <footer class="ft"><div class="w">
   <div class="sitemap">
     <div class="brand"><img class="flogo" src="../assets/img/logo-w.png" alt="서울시립대 더 고구마"><small>서울시립대학교 학교기업<br>환경원예학과</small></div>
-    <div><b>학교기업 소개</b><a href="#">설립 목적</a><a href="#">오시는 길</a></div>
-    <div><b>고구마 이야기</b><a href="#">고구마 이야기</a><a href="#">조직배양기술 이야기</a></div>
-    <div><b>사업안내</b><a href="#">교육사업</a><a href="#">수익사업</a></div>
-    <div><b>제품 소개</b><a href="#">조직배양묘</a><a href="#">고구마 생과</a><a href="#">기념주</a></div>
-    <div><b>공지사항</b><a href="#">공지사항</a></div>
+    <div><b>학교기업 소개</b><a href="about.html">설립 목적</a><a href="about.html#map">오시는 길</a></div>
+    <div><b>고구마 이야기</b><a href="sweet-potato.html">고구마 이야기</a><a href="culture.html">조직배양기술 이야기</a></div>
+    <div><b>사업안내</b><a href="education.html">교육사업</a><a href="profit.html">수익사업</a></div>
+    <div><b>제품 소개</b><a href="seedling.html">조직배양묘</a><a href="fresh.html">고구마 생과</a><a href="liquor.html">기념주</a></div>
+    <div><b>공지사항</b><a href="notice.html">공지사항</a></div>
   </div>
   <div class="fb">
     <div><div class="links"><a href="#">개인정보처리방침</a><a href="#">이용약관</a></div><div style="margin-top:10px">서울특별시 동대문구 서울시립대로 163 서울시립대학교 자연과학대학 환경원예학과</div></div>
@@ -261,5 +287,6 @@ a{color:inherit;text-decoration:none}
 
 <a class="back" href="../">← 시안 목록</a>
 <script src="../assets/common.js"></script>
+<script src="sub.js?v=1"></script>
 </body>
 </html>

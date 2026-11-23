@@ -5,3 +5,6 @@
 - 시안 A: `a/` 틸 그린 · 기업형
 - 시안 B: `b/` 자주 · 감성형
 - 시안 C: `c/` 남색 · 연구소형
+- 시안 D: `d/` 파스텔
+
+시안 A(선택안) 서브페이지: `a/about.html` 등 9개. `node _tools/build-a-sub.mjs` 로 `web/src/site.mjs` 원고에서 다시 생성.
