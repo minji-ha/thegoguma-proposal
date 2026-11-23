@@ -350,3 +350,4 @@ thead th{background:#2b2a28}
 .photo2{max-width:none}.photo2 img{aspect-ratio:16/8;object-fit:cover;height:auto}
 .cols>*{padding:28px}
 .tw:has(table.narrow)+.note{margin-top:10px}
+.map .mbox{min-height:clamp(320px,32vw,460px)}

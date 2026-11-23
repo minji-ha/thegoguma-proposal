@@ -9,7 +9,7 @@ const here = dirname(fileURLToPath(import.meta.url));
 const OUT = join(here, "..", "a");
 const { PAGES, MENU, PRODUCTS, STATIC_NOTICES } = await import(pathToFileURL(join(here, "..", "..", "web", "src", "site.mjs")).href);
 
-const FILE = { home: "./", about: "about.html", "sweet-potato": "sweet-potato.html", culture: "culture.html",
+const FILE = { home: "./", about: "about.html", location: "location.html", "sweet-potato": "sweet-potato.html", culture: "culture.html",
   education: "education.html", profit: "profit.html", seedling: "seedling.html", fresh: "fresh.html", liquor: "liquor.html", notice: "notice.html" };
 const ctx = { img: (p) => `../assets/img/sub/${p}`, href: (id) => FILE[id] || "#", art: () => null };
 const P = (f) => `../assets/img/photo/${f}`;
@@ -20,10 +20,10 @@ const BANNER = {
   about: [P("field.jpg"), "center 70%"], "sweet-potato": [P("halves.jpg"), "center 55%"], culture: ["../assets/img/bg/lab.jpg", "center"],
   education: [S("bn-edu.jpg"), "center"], profit: [S("bn-profit.jpg"), "center"],
   seedling: [S("bn-prod.jpg"), "center"], fresh: [S("bn-prod.jpg"), "center"], liquor: [S("bn-profit.jpg"), "center"],
-  notice: [S("bn-notice.jpg"), "center 40%"],
+  notice: [S("bn-notice.jpg"), "center 40%"], location: [P("story2.jpg"), "center 60%"],
 };
 const MENU_EN = ["ABOUT US", "SWEET POTATO", "BUSINESS", "PRODUCTS", "NOTICE"];
-const ABOUT_KIDS = [["about", "설립 목적"], ["about#map", "오시는 길"]];
+const ABOUT_KIDS = [["about", "설립 목적"], ["location", "오시는 길"]];
 const kids = (m) => m.kids || (m.id === "about" ? null : [[m.id, m.ko]]);
 const href = (id) => id.includes("#") ? FILE[id.split("#")[0]] + "#" + id.split("#")[1] : ctx.href(id);
 
@@ -57,7 +57,7 @@ const BODY = {
 <section class="sec gut" id="purpose"><div class="w"><div class="ct">
   <div class="intro">
     <div class="reveal">
-      <h2 style="margin-bottom:30px">설립 목적</h2>
+      <h2 style="margin-bottom:30px">학교기업 더고구마</h2>
       <div class="prose">
         <p class="lead-p">고구마 고유 품종으로 고부가가치 상품을 만들어 소비자에게 소개하고자 2017년 설립한 학교기업입니다.</p>
         <p>서울시립대학교 학교기업 더 고구마는 서울시립대학교 환경원예학과에서 개발한 고구마 고유 품종을 가지고 고구마 유래 고부가가치 상품을 개발하여 소비자들에게 소개하고자 설립되었습니다.</p>
@@ -73,10 +73,11 @@ const BODY = {
     <div><b>6</b><span>바이러스 다중 진단 키트</span></div>
     <div><b>3</b><span>판매 중인 제품</span></div>
   </div>
-</div></div></section>
+</div></div></section>`,
 
-<section class="sec soft gut" id="map"><div class="w"><div class="ct">
-  <div class="sh"><h2>오시는 길</h2><p>서울시립대학교 자연과학대학 환경원예학과</p></div>
+  location: () => `
+<section class="sec gut"><div class="w"><div class="ct">
+  <div class="sh"><h2>찾아오시는 길</h2><p>서울시립대학교 자연과학대학 환경원예학과</p></div>
   <!-- 개발 시: 지도 영역에 카카오/네이버 지도 삽입 -->
   <div class="map reveal">
     <div class="mbox" style="background-image:linear-gradient(rgba(30,25,20,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(30,25,20,.06) 1px,transparent 1px),linear-gradient(135deg,#ece8e3,#f8f7f5);background-size:40px 40px,40px 40px,auto">
@@ -196,7 +197,7 @@ const footer = `
 <footer class="ft"><div class="w">
   <div class="sitemap">
     <div class="brand"><img class="flogo" src="../assets/img/logo-w.png" alt="서울시립대 더 고구마"><small>서울시립대학교 학교기업<br>환경원예학과</small></div>
-    <div><b>학교기업 소개</b><a href="about.html">설립 목적</a><a href="about.html#map">오시는 길</a></div>
+    <div><b>학교기업 소개</b><a href="about.html">설립 목적</a><a href="location.html">오시는 길</a></div>
     <div><b>고구마 이야기</b><a href="sweet-potato.html">고구마 이야기</a><a href="culture.html">조직배양기술 이야기</a></div>
     <div><b>사업안내</b><a href="education.html">교육사업</a><a href="profit.html">수익사업</a></div>
     <div><b>제품 소개</b><a href="seedling.html">조직배양묘</a><a href="fresh.html">고구마 생과</a><a href="liquor.html">기념주</a></div>
@@ -210,9 +211,12 @@ const footer = `
 
 const home = `<svg viewBox="0 0 16 16" fill="none"><path d="M2.5 7.5L8 3l5.5 4.5V13a.5.5 0 01-.5.5H3a.5.5 0 01-.5-.5V7.5z" stroke="currentColor" stroke-width="1.5"/></svg>`;
 
-for (const p of PAGES.filter((p) => p.id !== "home")) {
+const LOCATION = { id: "location", group: 0, eyebrow: "About us", h1: "오시는 길", lead: "서울특별시 동대문구 서울시립대로 163",
+  desc: "학교기업 더고구마가 있는 서울시립대학교 자연과학대학 환경원예학과 찾아오시는 길입니다." };
+const ALL = PAGES.filter((p) => p.id !== "home").flatMap((p) => p.id === "about" ? [{ ...p, h1: "설립 목적" }, LOCATION] : [p]);
+for (const p of ALL) {
   const m = MENU[p.group];
-  const ks = p.id === "about" ? [["#purpose", "설립 목적"], ["#map", "오시는 길"]] : kids(m);
+  const ks = p.id === "about" || p.id === "location" ? ABOUT_KIDS : kids(m);
   const [bg, pos] = BANNER[p.id];
   const body = polish(p.id, BODY[p.id] ? BODY[p.id]() : p.id === "profit" ? profitBody() : PRODUCTS[p.id] ? productBody(p.id) : wrapCt(p.body(ctx)));
   const crumb = [m.ko, p.h1 !== m.ko ? p.h1 : null].filter(Boolean);
@@ -228,7 +232,7 @@ for (const p of PAGES.filter((p) => p.id !== "home")) {
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;800&display=swap">
 <link rel="stylesheet" href="../assets/common.css?v=3">
-<link rel="stylesheet" href="sub.css?v=9">
+<link rel="stylesheet" href="sub.css?v=10">
 </head>
 <body>
 ${header(p.group, p.id)}
@@ -244,7 +248,7 @@ ${header(p.group, p.id)}
     <div class="crumb"><a href="./" aria-label="홈">${home}</a>${crumb.map((c) => `<i>›</i><span>${c}</span>`).join("")}</div>
   </div>
 </section>
-${ks && ks.length > 1 ? `<nav class="stab" aria-label="${m.ko} 하위 메뉴"><div class="w">${ks.map(([k, t]) => `<a href="${k.startsWith("#") ? k : ctx.href(k)}"${k === p.id || k === "#purpose" ? ' class="on" aria-current="page"' : ""}>${t}</a>`).join("")}</div></nav>` : ""}
+${ks && ks.length > 1 ? `<nav class="stab" aria-label="${m.ko} 하위 메뉴"><div class="w">${ks.map(([k, t]) => `<a href="${k.startsWith("#") ? k : ctx.href(k)}"${k === p.id ? ' class="on" aria-current="page"' : ""}>${t}</a>`).join("")}</div></nav>` : ""}
 
 <main>
 ${body}
