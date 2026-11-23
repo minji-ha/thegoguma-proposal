@@ -478,3 +478,28 @@ tr.hl td{background:var(--potato-l)}
 /* 공지 게시판 */
 .nlist{border-top:2px solid var(--ink)}
 .nlist .t{font-size:1.08rem}
+
+/* 제목부 축소 (26.11.23): 글자 크기와 위아래 공간을 줄임 */
+.mh{padding:calc(88px + clamp(28px,3.2vw,52px)) 0 clamp(22px,2.4vw,34px)}
+@media(max-width:960px){.mh{padding-top:calc(70px + 28px)}}
+.mh .crumb{margin-bottom:clamp(16px,2vw,26px)}
+.mh h1{font-size:clamp(1.9rem,3.4vw,3.1rem);margin-top:10px;line-height:1.18}
+.mh .en{font-size:.74rem}
+.mh .lead{font-size:clamp(.98rem,1.1vw,1.1rem);padding-bottom:4px}
+.mtab{margin-top:clamp(22px,2.4vw,34px);padding-top:14px}
+.mfig .img{aspect-ratio:3/1}
+@media(max-width:700px){.mfig .img{aspect-ratio:16/9}}
+.mz-h h2{font-size:clamp(1.4rem,2vw,1.9rem)}
+.sec.mzs{padding-block:clamp(48px,5.5vw,88px)}
+.sec.mzs+.sec.mzs>.w>.ct{padding-top:clamp(48px,5.5vw,88px)}
+.sec.mzs+.sec.mzs{padding-top:0}
+/* 상단 사진을 뺐으므로 제목부와 본문 사이를 선으로 구분 */
+.mh+main>.sec.mzs:first-child>.w>.ct{border-top:1px solid var(--rule);padding-top:clamp(48px,5.5vw,88px)}
+.mh+main>.sec.mzs:first-child{padding-top:0}
+.mh:not(:has(.mtab))+main>.sec.mzs:first-child>.w>.ct{border-top-color:var(--ink)}
+/* 제목부 바로 아래 첫 본문 간격 줄임 */
+.mh+main>.sec.mzs:first-child>.w>.ct{border-top:0;padding-top:clamp(32px,3.6vw,56px)}
+.mh:not(:has(.mtab))+main>.sec.mzs:first-child>.w>.ct{border-top:1px solid var(--ink)}
+/* 제품 상세: 이름·소개는 제목부에 있으므로 사진 옆에서는 생략 */
+.pd h2,.pd .lp{display:none}
+.pd .en{margin-bottom:18px}
