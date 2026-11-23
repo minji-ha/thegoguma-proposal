@@ -30,7 +30,7 @@ const href = (id) => id.includes("#") ? FILE[id.split("#")[0]] + "#" + id.split(
 const PROD_IMG = {
   seedling: { src: P("seedling2.jpg"), pos: "50% 52%", alt: "배양 용기 속 고구마 조직배양묘" },
   fresh: { src: P("fresh.jpg"), pos: "50% 50%", alt: "고구마 생과" },
-  liquor: { src: P("liquor-soon.svg"), pos: "50% 50%", alt: "기념주 준비 중 일러스트", soon: true },
+  liquor: { src: P("liquor-soon2.svg"), pos: "50% 50%", alt: "기념주 준비 중 일러스트", soon: true },
 };
 // 판매 방식 (26.11.23 요청): 조직배양묘는 학교기업 직접 판매, 생과·기념주는 협력업체 판매사이트로 연결.
 // 개발 시: 제품별 판매 링크와 버튼 표시 여부(on/off)를 관리자 화면에서 설정.
@@ -79,7 +79,7 @@ const BODY = {
   <div class="sh"><h2>오시는 길</h2><p>서울시립대학교 자연과학대학 환경원예학과</p></div>
   <!-- 개발 시: 지도 영역에 카카오/네이버 지도 삽입 -->
   <div class="map reveal">
-    <div class="mbox" style="background:linear-gradient(135deg,#d5f7ef,#ecfdf8);background-image:linear-gradient(rgba(15,118,110,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(15,118,110,.07) 1px,transparent 1px),linear-gradient(135deg,#d5f7ef,#ecfdf8);background-size:40px 40px,40px 40px,auto">
+    <div class="mbox" style="background-image:linear-gradient(rgba(30,25,20,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(30,25,20,.06) 1px,transparent 1px),linear-gradient(135deg,#ece8e3,#f8f7f5);background-size:40px 40px,40px 40px,auto">
       <span class="pin">서울시립대학교 자연과학관</span>
     </div>
     <dl>
@@ -214,7 +214,7 @@ for (const p of PAGES.filter((p) => p.id !== "home")) {
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;800&display=swap">
 <link rel="stylesheet" href="../assets/common.css?v=3">
-<link rel="stylesheet" href="sub.css?v=3">
+<link rel="stylesheet" href="sub.css?v=8">
 </head>
 <body>
 ${header(p.group, p.id)}
