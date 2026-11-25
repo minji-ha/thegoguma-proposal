@@ -379,7 +379,7 @@ thead th{background:#2b2a28}
 .nlist .no.pin{font-family:var(--kr);color:var(--potato);font-weight:800;font-size:.85rem}
 .nlist .body{white-space:pre-line}
 .nlist .body:empty{display:none}
-.nlist .body img{display:block;margin:16px 0 0;max-width:min(100%,720px);border-radius:12px}
+.nlist .body img{display:block;margin:4px 0 24px;max-width:min(100%,720px);border-radius:12px}
 .nlist .empty{padding:48px 10px;text-align:center;color:var(--faint)}
 :focus-visible{outline:2px solid var(--green,#4f7d5c);outline-offset:3px}
 
@@ -503,3 +503,8 @@ tr.hl td{background:var(--potato-l)}
 /* 제품 상세: 이름·소개는 제목부에 있으므로 사진 옆에서는 생략 */
 .pd h2,.pd .lp{display:none}
 .pd .en{margin-bottom:18px}
+/* 두 칸 배치에서 양쪽 제목·사진 줄 맞춤 (26.11.25) */
+.duo>div>h3:first-child{margin-top:0!important}
+.duo:has(.strip){grid-template-rows:auto auto;row-gap:0}
+.duo:has(.strip)>div{display:grid;grid-row:span 2;grid-template-rows:subgrid}
+@media(max-width:900px){.duo:has(.strip){grid-template-rows:none}.duo:has(.strip)>div{grid-row:auto;grid-template-rows:none}}

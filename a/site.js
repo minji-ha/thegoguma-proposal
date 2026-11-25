@@ -84,7 +84,7 @@
         s.append(mk("span", "tag", n.category || "공지"), mk("span", "t", n.title), mk("span", "d", ymd(n.created_at)));
         d.append(s);
         const b = mk("div", "body", n.body || "");
-        if (n.image_url && String(n.image_url).startsWith("/media/")) { const im = mk("img"); im.src = n.image_url; im.alt = ""; im.loading = "lazy"; b.append(im); }
+        if (n.image_url && /^\/(media|images)\/notices?\//.test(String(n.image_url))) { const im = mk("img"); im.src = n.image_url; im.alt = n.title + " 이미지"; im.loading = "lazy"; b.prepend(im); }
         d.append(b); box.append(d);
       });
       pager.replaceChildren();
@@ -117,11 +117,12 @@
       }
       const by = $("[data-p-buy]", pb);
       if (by) {
+        const offTxt = ($(".btn.off", by) || {}).textContent || "준비 중";
         let b;
         if (p.sale_on && /^https?:/.test(p.sale_url || "")) {
           b = mk("a", "btn", (p.sale_label || "구매하러 가기") + " "); b.append(mk("b", null, "→"));
           b.href = p.sale_url; b.target = "_blank"; b.rel = "noopener";
-        } else b = mk("span", "btn off", "판매 준비 중");
+        } else b = mk("span", "btn off", offTxt);
         by.replaceChildren(b, mk("p", null, p.sale_note || ""));
       }
     });

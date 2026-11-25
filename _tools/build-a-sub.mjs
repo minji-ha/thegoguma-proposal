@@ -21,6 +21,7 @@ const FILE = { "/": "./", "/about/": "about.html", "/about/location/": "location
 const rel = (html) => {
   let s = html
     .replaceAll("/images/a/", "../assets/img/a/")
+    .replaceAll("/images/notice/", "../assets/img/notice/")
     .replace(/(["(])\/images\/(culture|hero|variety)\//g, "$1../assets/img/sub/$2/");
   for (const [path, file] of Object.entries(FILE).sort((a, b) => b[0].length - a[0].length))
     s = s.replaceAll(`href="${path}"`, `href="${file}"`);
@@ -30,6 +31,7 @@ const rel = (html) => {
 // 이미지·스타일·스크립트
 mkdirSync(join(here, "..", "assets", "img", "a"), { recursive: true });
 cpSync(join(WEB, "public", "images", "a"), join(here, "..", "assets", "img", "a"), { recursive: true });
+cpSync(join(WEB, "public", "images", "notice"), join(here, "..", "assets", "img", "notice"), { recursive: true });
 writeFileSync(join(OUT, "sub.css"), ["src/a-common.css", "src/a-sub.css", "src/a-extra.css", "src/a-mag.css"].map(read).join("\n"));
 writeFileSync(join(OUT, "site.js"), read("src/client.js")); // 공지·제품 API가 없으면 기본 내용을 그대로 둔다
 
